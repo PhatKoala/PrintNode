@@ -1,0 +1,33 @@
+{
+  "name": "bigstylee/printnode",
+  "description": "PHP API library for PrintNode - remote printing for web apps",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Stewart Walter",
+      "email": "code@bigstylee.co.uk",
+      "homepage": "https://www.bigstylee.co.uk"
+    }
+  ],
+  "keywords": [
+    "php",
+    "api",
+    "printnode",
+    "print",
+    "printing",
+    "remote",
+    "cloud"
+  ],
+  "require": {
+    "php": ">= 7.1.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "symfony/http-client": "4.3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bigstylee\\PrintNode\\": "src/PrintNode"
+    }
+  }
+}

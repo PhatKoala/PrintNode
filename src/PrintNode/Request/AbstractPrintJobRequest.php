@@ -105,4 +105,22 @@ abstract class AbstractPrintJobRequest extends AbstractRequest
      * @var int
      */
     protected $rotate;
+
+    /**
+     * AbstractPrintJobRequest constructor.
+     * @param $auth
+     * @param array $headers
+     * @param int $printer
+     * @param string $title
+     * @param string $source
+     */
+    public function __construct($auth, array $headers = [], int $printer, string $title, string $source)
+    {
+        parent::__construct($auth, $headers);
+
+        $this
+            ->setPrinter($printer)
+            ->setTitle($title)
+            ->setSource($source);
+    }
 }

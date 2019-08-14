@@ -42,7 +42,7 @@ class PrintNode
     /**
      * PrintNode constructor.
      * @param string $auth
-     * @param integer|null $child
+     * @param int|null $child
      */
     public function __construct(string $auth, int $child = null)
     {
@@ -54,10 +54,10 @@ class PrintNode
     }
 
     /**
-     * @param integer $child
+     * @param int $child
      * @return self
      */
-    public function getChildAccount(int $child)
+    public function getChildAccount(int $child): self
     {
         return new self($this->auth, $child);
     }
@@ -67,7 +67,7 @@ class PrintNode
      * @param $value
      * @return $this
      */
-    protected function addHeader($name, $value)
+    protected function addHeader($name, $value): self
     {
         $this->headers[$name] = $value;
 
@@ -78,7 +78,7 @@ class PrintNode
      * @param $name
      * @return $this
      */
-    protected function removeHeader($name)
+    protected function removeHeader($name): self
     {
         if (isset($this->headers[$name])) {
             unset($this->headers[$name]);
@@ -88,10 +88,12 @@ class PrintNode
     }
 
     /**
+     * https://www.printnode.com/en/docs/api/curl#versioning
+     *
      * @param string|null $version
      * @return $this
      */
-    public function setVersion($version)
+    public function setVersion($version): self
     {
         (is_null($version)) ? $this->removeHeader('Accept-Version') : $this->addHeader('Accept-Version', $version);
 
@@ -99,10 +101,12 @@ class PrintNode
     }
 
     /**
+     * https://www.printnode.com/en/docs/api/curl#headers
+     *
      * @param boolean $pretty
      * @return $this
      */
-    public function setPretty($pretty)
+    public function setPretty($pretty): self
     {
         ($pretty) ? $this->addHeader('X-Pretty', '') : $this->removeHeader('X-Pretty');
 
@@ -112,16 +116,16 @@ class PrintNode
     /**
      * @return WhoAmIResponse
      */
-    public function getWhoAmI()
+    public function getWhoAmI(): WhoAmIResponse
     {
         return (new WhoAmIRequest($this->auth, $this->headers))->getResponse();
     }
 
     /**
-     * @param integer $computer
+     * @param int $computer
      * @return ComputerResponse
      */
-    public function getComputer(int $computer)
+    public function getComputer(int $computer): ComputerResponse
     {
         return (new ComputerRequest($this->auth, $this->headers))->getResponse($computer);
     }
@@ -129,25 +133,25 @@ class PrintNode
     /**
      * @return ComputersResponse
      */
-    public function getComputers()
+    public function getComputers(): ComputersResponse
     {
         return (new ComputersRequest($this->auth, $this->headers))->getResponse();
     }
 
     /**
-     * @param null|integer|array $computers
+     * @param null|int|array $computers
      * @return DeleteConfirmationResponse
      */
-    public function deleteComputers($computers = null)
+    public function deleteComputers($computers = null): DeleteConfirmationResponse
     {
         return (new ComputersDeleteRequest($this->auth, $this->headers))->getResponse($computers);
     }
 
     /**
-     * @param integer $printer
+     * @param int $printer
      * @return PrinterResponse
      */
-    public function getPrinter(int $printer)
+    public function getPrinter(int $printer): PrinterResponse
     {
         return (new PrinterRequest($this->auth, $this->headers))->getResponse($printer);
     }
@@ -155,62 +159,68 @@ class PrintNode
     /**
      * @return PrintersResponse
      */
-    public function getPrinters()
+    public function getPrinters(): PrintersResponse
     {
         return (new PrintersRequest($this->auth, $this->headers))->getResponse();
     }
 
     /**
-     * @param null|integer|array $printers
+     * @param null|int|array $printers
      * @return DeleteConfirmationResponse
      */
-    public function deletePrinters($printers = null)
+    public function deletePrinters($printers = null): DeleteConfirmationResponse
     {
         return (new PrintersDeleteRequest($this->auth, $this->headers))->getResponse($printers);
     }
 
     /**
-     * @param integer $computer
-     * @param integer $printer
+     * @param int $computer
+     * @param int $printer
      * @return PrinterResponse
      */
-    public function getComputerPrinter(int $computer, int $printer)
+    public function getComputerPrinter(int $computer, int $printer): PrinterResponse
     {
         return (new ComputerPrinterRequest($this->auth, $this->headers))->getResponse($computer, $printer);
     }
 
     /**
-     * @param integer $computer
+     * @param int $computer
      * @return PrintersResponse
      */
-    public function getComputerPrinters(int $computer)
+    public function getComputerPrinters(int $computer): PrintersResponse
     {
         return (new ComputerPrintersRequest($this->auth, $this->headers))->getResponse($computer);
     }
 
     /**
-     * @param integer $computer
-     * @param null|integer|array $printers
+     * @param int $computer
+     * @param null|int|array $printers
      * @return DeleteConfirmationResponse
      */
-    public function deleteComputerPrinters(int $computer, $printers = null)
+    public function deleteComputerPrinters(int $computer, $printers = null): DeleteConfirmationResponse
     {
         return (new ComputerPrintersDeleteRequest($this->auth, $this->headers))->getResponse($computer, $printers);
     }
 
     /**
+     * @param int $printer
+     * @param string $title
+     * @param string $source
      * @return PrintJobRequestUrl
      */
-    public function createPrintJobUrl()
+    public function createPrintJobUrl(int $printer, string $title, string $source): PrintJobRequestUrl
     {
-        return new PrintJobRequestUrl($this->auth, $this->headers);
+        return new PrintJobRequestUrl($this->auth, $this->headers, $printer, $title, $source);
     }
 
     /**
+     * @param int $printer
+     * @param string $title
+     * @param string $source
      * @return PrintJobRequestFile
      */
-    public function createPrintJobFile()
+    public function createPrintJobFile(int $printer, string $title, string $source): PrintJobRequestFile
     {
-        return new PrintJobRequestFile($this->auth, $this->headers);
+        return new PrintJobRequestFile($this->auth, $this->headers, $printer, $title, $source);
     }
 }

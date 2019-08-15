@@ -2,6 +2,9 @@
 
 namespace Bigstylee\PrintNode\Response;
 
+use DateTime;
+use DateTimeInterface;
+
 /**
  * Class PrinterResponse
  * @author Stewart Walter <code@bigstylee.co.uk>
@@ -39,7 +42,7 @@ class PrinterResponse extends AbstractResponse
     private $default;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $createTimestamp;
 
@@ -49,18 +52,10 @@ class PrinterResponse extends AbstractResponse
     private $state;
 
     /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      * @return PrinterResponse
      */
-    protected function setId(int $id)
+    protected function setId(int $id): self
     {
         $this->id = $id;
 
@@ -68,18 +63,10 @@ class PrinterResponse extends AbstractResponse
     }
 
     /**
-     * @return ComputerResponse
-     */
-    public function getComputer(): ComputerResponse
-    {
-        return $this->computer;
-    }
-
-    /**
-     * @param ComputerResponse $computer
+     * @param ComputerResponse|array $computer
      * @return PrinterResponse
      */
-    protected function setComputer($computer)
+    protected function setComputer($computer): self
     {
         if (is_array($computer)) {
             $computer = new ComputerResponse($computer);
@@ -91,18 +78,10 @@ class PrinterResponse extends AbstractResponse
     }
 
     /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
      * @param string $name
      * @return PrinterResponse
      */
-    protected function setName(string $name)
+    protected function setName(string $name): self
     {
         $this->name = $name;
 
@@ -110,18 +89,10 @@ class PrinterResponse extends AbstractResponse
     }
 
     /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
      * @param string $description
      * @return PrinterResponse
      */
-    protected function setDescription(string $description)
+    protected function setDescription(string $description): self
     {
         $this->description = $description;
 
@@ -129,18 +100,10 @@ class PrinterResponse extends AbstractResponse
     }
 
     /**
-     * @return PrinterCapabilitiesResponse|null
-     */
-    public function getCapabilities(): ?PrinterCapabilitiesResponse
-    {
-        return $this->capabilities;
-    }
-
-    /**
-     * @param PrinterCapabilitiesResponse|null $capabilities
+     * @param PrinterCapabilitiesResponse|array $capabilities
      * @return PrinterResponse
      */
-    protected function setCapabilities($capabilities)
+    protected function setCapabilities($capabilities): self
     {
         if (is_array($capabilities)) {
             $capabilities = new PrinterCapabilitiesResponse($capabilities);
@@ -152,18 +115,10 @@ class PrinterResponse extends AbstractResponse
     }
 
     /**
-     * @return string|null
-     */
-    public function getDefault(): ?string
-    {
-        return $this->default;
-    }
-
-    /**
      * @param string|null $default
      * @return PrinterResponse
      */
-    protected function setDefault(?string $default)
+    protected function setDefault(?string $default): self
     {
         $this->default = $default;
 
@@ -171,22 +126,17 @@ class PrinterResponse extends AbstractResponse
     }
 
     /**
-     * @return \DateTimeInterface
+     * @param DateTimeInterface $createTimestamp
+     * @return PrinterResponse
      */
-    public function getCreateTimestamp(): \DateTimeInterface
-    {
-        return $this->createTimestamp;
-    }
-
-    /**
-     * @param $createTimestamp
-     * @return $this
-     * @throws \Exception
-     */
-    protected function setCreateTimestamp($createTimestamp)
+    protected function setCreateTimestamp($createTimestamp): self
     {
         if (is_string($createTimestamp)) {
-            $createTimestamp = new \DateTime($createTimestamp);
+            $createTimestamp = DateTime::createFromFormat($createTimestamp, 'c');
+
+            if (false === $createTimestamp) {
+                $createTimestamp = null;
+            }
         }
 
         $this->createTimestamp = $createTimestamp;
@@ -195,21 +145,77 @@ class PrinterResponse extends AbstractResponse
     }
 
     /**
+     * @param string $state
+     * @return PrinterResponse
+     */
+    protected function setState(string $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return ComputerResponse
+     */
+    public function getComputer(): ComputerResponse
+    {
+        return $this->computer;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return PrinterCapabilitiesResponse|null
+     */
+    public function getCapabilities(): ?PrinterCapabilitiesResponse
+    {
+        return $this->capabilities;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDefault(): ?string
+    {
+        return $this->default;
+    }
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getCreateTimestamp(): DateTimeInterface
+    {
+        return $this->createTimestamp;
+    }
+
+    /**
      * @return string
      */
     public function getState(): string
     {
         return $this->state;
-    }
-
-    /**
-     * @param string $state
-     * @return PrinterResponse
-     */
-    protected function setState(string $state)
-    {
-        $this->state = $state;
-
-        return $this;
     }
 }

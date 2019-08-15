@@ -69,20 +69,133 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     private $supportsCustomPaperSize;
 
     /**
-     * @return ResponseHeaders|null
+     * @param array $bins
+     * @return PrinterCapabilitiesResponse
      */
-    public function getHeaders(): ?ResponseHeaders
+    protected function setBins(array $bins): self
     {
-        return $this->headers;
+        $this->bins = $bins;
+
+        return $this;
     }
 
     /**
-     * @param ResponseHeaders|null $headers
+     * @param bool $collate
      * @return PrinterCapabilitiesResponse
      */
-    public function setHeaders(?ResponseHeaders $headers)
+    protected function setCollate(bool $collate): self
     {
-        $this->headers = $headers;
+        $this->collate = $collate;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $color
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setColor(bool $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * @param int $copies
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setCopies(int $copies): self
+    {
+        $this->copies = $copies;
+
+        return $this;
+    }
+
+    /**
+     * @param array $dpis
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setDpis(array $dpis): self
+    {
+        $this->dpis = $dpis;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $duplex
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setDuplex(bool $duplex): self
+    {
+        $this->duplex = $duplex;
+
+        return $this;
+    }
+
+    /**
+     * @param array $extend
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setExtend(array $extend): self
+    {
+        $this->extend = $extend;
+
+        return $this;
+    }
+
+    /**
+     * @param array $medias
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setMedias(array $medias): self
+    {
+        $this->medias = $medias;
+
+        return $this;
+    }
+
+    /**
+     * @param array $nup
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setNup(array $nup): self
+    {
+        $this->nup = $nup;
+
+        return $this;
+    }
+
+    /**
+     * @param array $papers
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setPapers(array $papers): self
+    {
+        $this->papers = $papers;
+
+        return $this;
+    }
+
+    /**
+     * @param array|null $printrate
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setPrintrate(?array $printrate): self
+    {
+        $this->printrate = $printrate;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $supportsCustomPaperSize
+     * @return PrinterCapabilitiesResponse
+     */
+    protected function setSupportsCustomPaperSize(bool $supportsCustomPaperSize): self
+    {
+        $this->supportsCustomPaperSize = $supportsCustomPaperSize;
 
         return $this;
     }
@@ -96,33 +209,11 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     }
 
     /**
-     * @param array $bins
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setBins(array $bins)
-    {
-        $this->bins = $bins;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isCollate(): bool
     {
         return $this->collate;
-    }
-
-    /**
-     * @param bool $collate
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setCollate(bool $collate)
-    {
-        $this->collate = $collate;
-
-        return $this;
     }
 
     /**
@@ -134,33 +225,11 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     }
 
     /**
-     * @param bool $color
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setColor(bool $color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getCopies(): int
     {
         return $this->copies;
-    }
-
-    /**
-     * @param int $copies
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setCopies(int $copies)
-    {
-        $this->copies = $copies;
-
-        return $this;
     }
 
     /**
@@ -172,33 +241,11 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     }
 
     /**
-     * @param array $dpis
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setDpis(array $dpis)
-    {
-        $this->dpis = $dpis;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isDuplex(): bool
     {
         return $this->duplex;
-    }
-
-    /**
-     * @param bool $duplex
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setDuplex(bool $duplex)
-    {
-        $this->duplex = $duplex;
-
-        return $this;
     }
 
     /**
@@ -210,33 +257,11 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     }
 
     /**
-     * @param array $extend
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setExtend(array $extend)
-    {
-        $this->extend = $extend;
-
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getMedias(): array
     {
         return $this->medias;
-    }
-
-    /**
-     * @param array $medias
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setMedias(array $medias)
-    {
-        $this->medias = $medias;
-
-        return $this;
     }
 
     /**
@@ -248,33 +273,11 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     }
 
     /**
-     * @param array $nup
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setNup(array $nup)
-    {
-        $this->nup = $nup;
-
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getPapers(): array
     {
         return $this->papers;
-    }
-
-    /**
-     * @param array $papers
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setPapers(array $papers)
-    {
-        $this->papers = $papers;
-
-        return $this;
     }
 
     /**
@@ -286,32 +289,10 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     }
 
     /**
-     * @param array|null $printrate
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setPrintrate(?array $printrate)
-    {
-        $this->printrate = $printrate;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isSupportsCustomPaperSize(): bool
     {
         return $this->supportsCustomPaperSize;
-    }
-
-    /**
-     * @param bool $supportsCustomPaperSize
-     * @return PrinterCapabilitiesResponse
-     */
-    public function setSupportsCustomPaperSize(bool $supportsCustomPaperSize)
-    {
-        $this->supportsCustomPaperSize = $supportsCustomPaperSize;
-
-        return $this;
     }
 }

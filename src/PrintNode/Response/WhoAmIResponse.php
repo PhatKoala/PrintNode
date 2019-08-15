@@ -84,22 +84,176 @@ class WhoAmIResponse extends AbstractResponse
     private $permissions = [ ];
 
     /**
+     * @param int $id
+     * @return WhoAmIResponse
+     */
+    protected function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @param string $firstname
+     * @return WhoAmIResponse
+     */
+    protected function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * @param string $lastname
+     * @return WhoAmIResponse
+     */
+    protected function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @param string $email
+     * @return WhoAmIResponse
+     */
+    protected function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $canCreateSubAccounts
+     * @return WhoAmIResponse
+     */
+    protected function setCanCreateSubAccounts(bool $canCreateSubAccounts): self
+    {
+        $this->canCreateSubAccounts = $canCreateSubAccounts;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $creatorEmail
+     * @return WhoAmIResponse
+     */
+    protected function setCreatorEmail(?string $creatorEmail): self
+    {
+        $this->creatorEmail = $creatorEmail;
+
+        return $this;
+    }
+
+    /**
+     * @param array $childAccounts
+     * @return WhoAmIResponse
+     */
+    protected function setChildAccounts(array $childAccounts): self
+    {
+        $this->childAccounts = $childAccounts;
+
+        return $this;
+    }
+
+    /**
+     * @param int|null $credits
+     * @return WhoAmIResponse
+     */
+    protected function setCredits(?int $credits): self
+    {
+        $this->credits = $credits;
+
+        return $this;
+    }
+
+    /**
+     * @param int $numComputers
+     * @return WhoAmIResponse
+     */
+    protected function setNumComputers(int $numComputers): self
+    {
+        $this->numComputers = $numComputers;
+
+        return $this;
+    }
+
+    /**
+     * @param int $totalPrints
+     * @return WhoAmIResponse
+     */
+    protected function setTotalPrints(int $totalPrints): self
+    {
+        $this->totalPrints = $totalPrints;
+
+        return $this;
+    }
+
+    /**
+     * @param array $versions
+     * @return WhoAmIResponse
+     */
+    protected function setVersions(array $versions): self
+    {
+        $this->versions = $versions;
+
+        return $this;
+    }
+
+    /**
+     * @param array $connected
+     * @return WhoAmIResponse
+     */
+    protected function setConnected(array $connected): self
+    {
+        $this->connected = $connected;
+
+        return $this;
+    }
+
+    /**
+     * @param array $tags
+     * @return WhoAmIResponse
+     */
+    protected function setTags(array $tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @param string $state
+     * @return WhoAmIResponse
+     */
+    protected function setState(string $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * @param array $permissions
+     * @return WhoAmIResponse
+     */
+    protected function setPermissions(array $permissions): self
+    {
+        $this->permissions = $permissions;
+
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     * @return WhoAmIResponse
-     */
-    protected function setId(int $id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -111,33 +265,11 @@ class WhoAmIResponse extends AbstractResponse
     }
 
     /**
-     * @param string $firstname
-     * @return WhoAmIResponse
-     */
-    protected function setFirstname(string $firstname)
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getLastname(): string
     {
         return $this->lastname;
-    }
-
-    /**
-     * @param string $lastname
-     * @return WhoAmIResponse
-     */
-    protected function setLastname(string $lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
     }
 
     /**
@@ -149,33 +281,11 @@ class WhoAmIResponse extends AbstractResponse
     }
 
     /**
-     * @param string $email
-     * @return WhoAmIResponse
-     */
-    protected function setEmail(string $email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isCanCreateSubAccounts(): bool
     {
         return $this->canCreateSubAccounts;
-    }
-
-    /**
-     * @param bool $canCreateSubAccounts
-     * @return WhoAmIResponse
-     */
-    protected function setCanCreateSubAccounts(bool $canCreateSubAccounts)
-    {
-        $this->canCreateSubAccounts = $canCreateSubAccounts;
-
-        return $this;
     }
 
     /**
@@ -187,33 +297,11 @@ class WhoAmIResponse extends AbstractResponse
     }
 
     /**
-     * @param string|null $creatorEmail
-     * @return WhoAmIResponse
-     */
-    protected function setCreatorEmail(?string $creatorEmail)
-    {
-        $this->creatorEmail = $creatorEmail;
-
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getChildAccounts(): array
     {
         return $this->childAccounts;
-    }
-
-    /**
-     * @param array $childAccounts
-     * @return WhoAmIResponse
-     */
-    protected function setChildAccounts(array $childAccounts)
-    {
-        $this->childAccounts = $childAccounts;
-
-        return $this;
     }
 
     /**
@@ -225,33 +313,11 @@ class WhoAmIResponse extends AbstractResponse
     }
 
     /**
-     * @param int|null $credits
-     * @return WhoAmIResponse
-     */
-    protected function setCredits(?int $credits)
-    {
-        $this->credits = $credits;
-
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getNumComputers(): int
     {
         return $this->numComputers;
-    }
-
-    /**
-     * @param int $numComputers
-     * @return WhoAmIResponse
-     */
-    protected function setNumComputers(int $numComputers)
-    {
-        $this->numComputers = $numComputers;
-
-        return $this;
     }
 
     /**
@@ -263,33 +329,11 @@ class WhoAmIResponse extends AbstractResponse
     }
 
     /**
-     * @param int $totalPrints
-     * @return WhoAmIResponse
-     */
-    protected function setTotalPrints(int $totalPrints)
-    {
-        $this->totalPrints = $totalPrints;
-
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getVersions(): array
     {
         return $this->versions;
-    }
-
-    /**
-     * @param array $versions
-     * @return WhoAmIResponse
-     */
-    protected function setVersions(array $versions)
-    {
-        $this->versions = $versions;
-
-        return $this;
     }
 
     /**
@@ -301,33 +345,11 @@ class WhoAmIResponse extends AbstractResponse
     }
 
     /**
-     * @param array $connected
-     * @return WhoAmIResponse
-     */
-    protected function setConnected(array $connected)
-    {
-        $this->connected = $connected;
-
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getTags(): array
     {
         return $this->tags;
-    }
-
-    /**
-     * @param array $tags
-     * @return WhoAmIResponse
-     */
-    protected function setTags(array $tags)
-    {
-        $this->tags = $tags;
-
-        return $this;
     }
 
     /**
@@ -339,32 +361,10 @@ class WhoAmIResponse extends AbstractResponse
     }
 
     /**
-     * @param string $state
-     * @return WhoAmIResponse
-     */
-    protected function setState(string $state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getPermissions(): array
     {
         return $this->permissions;
-    }
-
-    /**
-     * @param array $permissions
-     * @return WhoAmIResponse
-     */
-    protected function setPermissions(array $permissions)
-    {
-        $this->permissions = $permissions;
-
-        return $this;
     }
 }

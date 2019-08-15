@@ -58,22 +58,118 @@ class ComputerResponse extends AbstractResponse
     private $state;
 
     /**
+     * @param int $id
+     * @return ComputerResponse
+     */
+    protected function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return ComputerResponse
+     */
+    protected function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $inet
+     * @return ComputerResponse
+     */
+    protected function setInet($inet): self
+    {
+        $this->inet = $inet;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $inet6
+     * @return ComputerResponse
+     */
+    protected function setInet6($inet6): self
+    {
+        $this->inet6 = $inet6;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $hostname
+     * @return ComputerResponse
+     */
+    protected function setHostname(?string $hostname): self
+    {
+        $this->hostname = $hostname;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $version
+     * @return ComputerResponse
+     */
+    protected function setVersion(?string $version): self
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $jre
+     * @return ComputerResponse
+     */
+    protected function setJre(?string $jre): self
+    {
+        $this->jre = $jre;
+
+        return $this;
+    }
+
+    /**
+     * @param DateTimeInterface|string $createTimestamp
+     * @return ComputerResponse
+     */
+    protected function setCreateTimestamp($createTimestamp): self
+    {
+        if (is_string($createTimestamp)) {
+            $createTimestamp = DateTime::createFromFormat($createTimestamp, 'c');
+
+            if (false === $createTimestamp) {
+                $createTimestamp = null;
+            }
+        }
+
+        $this->createTimestamp = $createTimestamp;
+
+        return $this;
+    }
+
+    /**
+     * @param string $state
+     * @return ComputerResponse
+     */
+    protected function setState(string $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     * @return ComputerResponse
-     */
-    protected function setId(int $id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -85,33 +181,11 @@ class ComputerResponse extends AbstractResponse
     }
 
     /**
-     * @param string $name
-     * @return ComputerResponse
-     */
-    protected function setName(string $name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
     public function getInet()
     {
         return $this->inet;
-    }
-
-    /**
-     * @param mixed $inet
-     * @return ComputerResponse
-     */
-    protected function setInet($inet)
-    {
-        $this->inet = $inet;
-
-        return $this;
     }
 
     /**
@@ -123,33 +197,11 @@ class ComputerResponse extends AbstractResponse
     }
 
     /**
-     * @param mixed $inet6
-     * @return ComputerResponse
-     */
-    protected function setInet6($inet6)
-    {
-        $this->inet6 = $inet6;
-
-        return $this;
-    }
-
-    /**
      * @return string|null
      */
     public function getHostname(): ?string
     {
         return $this->hostname;
-    }
-
-    /**
-     * @param string|null $hostname
-     * @return ComputerResponse
-     */
-    protected function setHostname(?string $hostname)
-    {
-        $this->hostname = $hostname;
-
-        return $this;
     }
 
     /**
@@ -161,17 +213,6 @@ class ComputerResponse extends AbstractResponse
     }
 
     /**
-     * @param string|null $version
-     * @return ComputerResponse
-     */
-    protected function setVersion(?string $version)
-    {
-        $this->version = $version;
-
-        return $this;
-    }
-
-    /**
      * @return string|null
      */
     public function getJre(): ?string
@@ -180,38 +221,11 @@ class ComputerResponse extends AbstractResponse
     }
 
     /**
-     * @param string|null $jre
-     * @return ComputerResponse
+     * @return DateTimeInterface
      */
-    protected function setJre(?string $jre)
-    {
-        $this->jre = $jre;
-
-        return $this;
-    }
-
-    /**
-     * @return DateTimeInterface|null
-     */
-    public function getCreateTimestamp(): ?DateTimeInterface
+    public function getCreateTimestamp(): DateTimeInterface
     {
         return $this->createTimestamp;
-    }
-
-    /**
-     * @param $createTimestamp
-     * @return $this
-     * @throws Exception
-     */
-    protected function setCreateTimestamp($createTimestamp)
-    {
-        if (is_string($createTimestamp)) {
-            $createTimestamp = new DateTime($createTimestamp);
-        }
-
-        $this->createTimestamp = $createTimestamp;
-
-        return $this;
     }
 
     /**
@@ -220,16 +234,5 @@ class ComputerResponse extends AbstractResponse
     public function getState(): string
     {
         return $this->state;
-    }
-
-    /**
-     * @param string $state
-     * @return ComputerResponse
-     */
-    protected function setState(string $state)
-    {
-        $this->state = $state;
-
-        return $this;
     }
 }

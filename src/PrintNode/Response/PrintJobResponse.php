@@ -2,6 +2,7 @@
 
 namespace Bigstylee\PrintNode\Response;
 
+use DateTime;
 use DateTimeInterface;
 
 /**
@@ -51,11 +52,111 @@ class PrintJobResponse extends AbstractResponse
     private $printer;
 
     /**
-     * @return ResponseHeaders|null
+     * @param int $id
+     * @return PrintJobResponse
      */
-    public function getHeaders(): ?ResponseHeaders
+    protected function setId(int $id): self
     {
-        return $this->headers;
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @param string $title
+     * @return PrintJobResponse
+     */
+    protected function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @param string $contentType
+     * @return PrintJobResponse
+     */
+    protected function setContentType(string $contentType): self
+    {
+        $this->contentType = $contentType;
+
+        return $this;
+    }
+
+    /**
+     * @param string $source
+     * @return PrintJobResponse
+     */
+    protected function setSource(string $source): self
+    {
+        $this->source = $source;
+
+        return $this;
+    }
+
+    /**
+     * @param DateTimeInterface|null $expireAt
+     * @return PrintJobResponse
+     */
+    protected function setExpireAt($expireAt): self
+    {
+        if (is_string($expireAt)) {
+            $expireAt = DateTime::createFromFormat($expireAt, 'c');
+
+            if (false === $expireAt) {
+                $expireAt = null;
+            }
+        }
+
+        $this->expireAt = $expireAt;
+
+        return $this;
+    }
+
+    /**
+     * @param DateTimeInterface $createTimestamp
+     * @return PrintJobResponse
+     */
+    protected function setCreateTimestamp($createTimestamp): self
+    {
+        if (is_string($createTimestamp)) {
+            $createTimestamp = DateTime::createFromFormat($createTimestamp, 'c');
+
+            if (false === $createTimestamp) {
+                $createTimestamp = null;
+            }
+        }
+
+        $this->createTimestamp = $createTimestamp;
+
+        return $this;
+    }
+
+    /**
+     * @param string $state
+     * @return PrintJobResponse
+     */
+    protected function setState(string $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * @param PrinterResponse|array $printer
+     * @return PrintJobResponse
+     */
+    protected function setPrinter($printer): self
+    {
+        if (is_array($printer)) {
+            $printer = new PrinterResponse($printer);
+        }
+
+        $this->printer = $printer;
+
+        return $this;
     }
 
     /**

@@ -28,21 +28,21 @@ class DeleteConfirmationResponse extends AbstractResponse
     }
 
     /**
+     * @param array $confirmed
+     * @return DeleteConfirmationResponse
+     */
+    protected function setConfirmed(array $confirmed): self
+    {
+        $this->confirmed = $confirmed;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getConfirmed(): array
     {
         return $this->confirmed;
-    }
-
-    /**
-     * @param array $confirmed
-     * @return DeleteConfirmationResponse
-     */
-    protected function setConfirmed(array $confirmed)
-    {
-        $this->confirmed = $confirmed;
-
-        return $this;
     }
 }

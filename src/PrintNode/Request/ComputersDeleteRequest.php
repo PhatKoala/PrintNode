@@ -3,6 +3,11 @@
 namespace Bigstylee\PrintNode\Request;
 
 use Bigstylee\PrintNode\Response\DeleteConfirmationResponse;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class ComputersDeleteRequest
@@ -11,8 +16,13 @@ use Bigstylee\PrintNode\Response\DeleteConfirmationResponse;
 class ComputersDeleteRequest extends AbstractRequest
 {
     /**
-     * @param null|integer|array $computers
+     * @param null|int|array $computers
      * @return DeleteConfirmationResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getResponse($computers = null)
     {
@@ -21,12 +31,10 @@ class ComputersDeleteRequest extends AbstractRequest
         if (is_null($computers)) {
             $response = $this->request->request('DELETE', sprintf($this->url, 'computers'));
         }
-
-        if (is_numeric($computers)) {
-            $response = $this->request->request('DELETE', sprintf($this->url, sprintf('computers/%d', $computers)));
+        else if (is_int($computers) || (is_string($computers) && ctype_digit($computers))) {
+            $response = $this->request->request('DELETE', sprintf($this->url, sprintf('computers/%d', (int) $computers)));
         }
-
-        if (is_array($computers)) {
+        else if (is_array($computers)) {
             $computers = implode(',', array_filter(array_map('intval', $computers)));
             if (!empty($computers)) {
                 $response = $this->request->request('DELETE', sprintf($this->url, sprintf('computers/%s', $computers)));

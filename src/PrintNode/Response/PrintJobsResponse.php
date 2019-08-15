@@ -3,18 +3,18 @@
 namespace Bigstylee\PrintNode\Response;
 
 /**
- * Class PrintersResponse
+ * Class PrintJobsResponse
  * @author Stewart Walter <code@bigstylee.co.uk>
  */
-class PrintersResponse extends AbstractResponse implements \ArrayAccess, \Iterator
+class PrintJobsResponse extends AbstractResponse implements \ArrayAccess, \Iterator
 {
     /**
      * @var array
      */
-    private $printers = [ ];
+    private $printJobs = [ ];
 
     /**
-     * PrintersResponse constructor.
+     * PrintJobsResponse constructor.
      * @param iterable $response
      * @param iterable|null $headers
      */
@@ -24,58 +24,58 @@ class PrintersResponse extends AbstractResponse implements \ArrayAccess, \Iterat
             $this->headers = new ResponseHeaders($headers);
         }
 
-        foreach ($response as $printer) {
-            $this->printers[] = new PrinterResponse($printer);
+        foreach ($response as $printJob) {
+            $this->printJobs[] = new PrintJobResponse($printJob);
         }
     }
 
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
-            $this->printers[] = $value;
+            $this->printJobs[] = $value;
         } else {
-            $this->printers[$offset] = $value;
+            $this->printJobs[$offset] = $value;
         }
     }
 
     public function offsetExists($offset)
     {
-        return isset($this->printers[$offset]);
+        return isset($this->printJobs[$offset]);
     }
 
     public function offsetUnset($offset)
     {
-        unset($this->printers[$offset]);
+        unset($this->printJobs[$offset]);
     }
 
     public function offsetGet($offset)
     {
-        return isset($this->printers[$offset]) ? $this->printers[$offset] : null;
+        return isset($this->printJobs[$offset]) ? $this->printJobs[$offset] : null;
     }
 
     public function rewind()
     {
-        reset($this->printers);
+        reset($this->printJobs);
     }
 
     public function current()
     {
-        return current($this->printers);
+        return current($this->printJobs);
     }
 
     public function key()
     {
-        return key($this->printers);
+        return key($this->printJobs);
     }
 
     public function next()
     {
-        return next($this->printers);
+        return next($this->printJobs);
     }
 
     public function valid()
     {
-        $key = key($this->printers);
+        $key = key($this->printJobs);
         return ($key !== null && $key !== false);
     }
 }

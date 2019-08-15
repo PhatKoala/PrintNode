@@ -3,6 +3,11 @@
 namespace Bigstylee\PrintNode\Request;
 
 use Bigstylee\PrintNode\Response\DeleteConfirmationResponse;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class ComputerPrintersDeleteRequest
@@ -11,9 +16,14 @@ use Bigstylee\PrintNode\Response\DeleteConfirmationResponse;
 class ComputerPrintersDeleteRequest extends AbstractRequest
 {
     /**
-     * @param integer $computer
-     * @param null|integer|iterable $printers
+     * @param int $computer
+     * @param null|int|array $printers
      * @return DeleteConfirmationResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getResponse(int $computer, $printers = null)
     {
@@ -22,12 +32,10 @@ class ComputerPrintersDeleteRequest extends AbstractRequest
         if (is_null($printers)) {
             $response = $this->request->request('DELETE', sprintf($this->url, sprintf('computers/%d/printers', $computer)));
         }
-
-        if (is_numeric($printers)) {
-            $response = $this->request->request('DELETE', sprintf($this->url, sprintf('computers/%d/printers/%d', $computer, $printers)));
+        else if (is_int($printers) || (is_string($printers) && ctype_digit($printers))) {
+            $response = $this->request->request('DELETE', sprintf($this->url, sprintf('computers/%d/printers/%d', $computer, (int) $printers)));
         }
-
-        if (is_iterable($printers)) {
+        else if (is_array($printers)) {
             $printers = implode(',', array_filter(array_map('intval', $printers)));
             if (!empty($printers)) {
                 $response = $this->request->request('DELETE', sprintf($this->url, sprintf('computers/%d/printers/%s', $computer, $printers)));

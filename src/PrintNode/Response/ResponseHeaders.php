@@ -9,7 +9,7 @@ namespace Bigstylee\PrintNode\Response;
 class ResponseHeaders
 {
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      */
     private $date;
 
@@ -98,9 +98,9 @@ class ResponseHeaders
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getDate(): \DateTime
+    public function getDate(): \DateTimeInterface
     {
         return $this->date;
     }

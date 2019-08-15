@@ -8,11 +8,13 @@ use Bigstylee\PrintNode\Request\ComputerPrintersRequest;
 use Bigstylee\PrintNode\Request\ComputerRequest;
 use Bigstylee\PrintNode\Request\ComputersDeleteRequest;
 use Bigstylee\PrintNode\Request\ComputersRequest;
+use Bigstylee\PrintNode\Request\NoopRequest;
+use Bigstylee\PrintNode\Request\PingRequest;
 use Bigstylee\PrintNode\Request\PrinterRequest;
 use Bigstylee\PrintNode\Request\PrintersDeleteRequest;
 use Bigstylee\PrintNode\Request\PrintersRequest;
-use Bigstylee\PrintNode\Request\PrintJobRequestFile;
-use Bigstylee\PrintNode\Request\PrintJobRequestUrl;
+use Bigstylee\PrintNode\Request\PrintJob\PrintJobFile;
+use Bigstylee\PrintNode\Request\PrintJob\PrintJobUrl;
 use Bigstylee\PrintNode\Request\WhoAmIRequest;
 use Bigstylee\PrintNode\Response\ComputerResponse;
 use Bigstylee\PrintNode\Response\ComputersResponse;
@@ -20,6 +22,11 @@ use Bigstylee\PrintNode\Response\DeleteConfirmationResponse;
 use Bigstylee\PrintNode\Response\PrinterResponse;
 use Bigstylee\PrintNode\Response\PrintersResponse;
 use Bigstylee\PrintNode\Response\WhoAmIResponse;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class PrintNode
@@ -115,112 +122,224 @@ class PrintNode
 
     /**
      * @return WhoAmIResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getWhoAmI(): WhoAmIResponse
     {
-        return (new WhoAmIRequest($this->auth, $this->headers))->getResponse();
+        $request = new WhoAmIRequest($this->auth, $this->headers);
+
+        return $request->getResponse();
+    }
+
+    /**
+     * @return ComputersResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function getComputers(): ComputersResponse
+    {
+        $request = new ComputersRequest($this->auth, $this->headers);
+
+        return $request->getResponse();
     }
 
     /**
      * @param int $computer
      * @return ComputerResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getComputer(int $computer): ComputerResponse
     {
-        return (new ComputerRequest($this->auth, $this->headers))->getResponse($computer);
-    }
+        $request = new ComputerRequest($this->auth, $this->headers);
 
-    /**
-     * @return ComputersResponse
-     */
-    public function getComputers(): ComputersResponse
-    {
-        return (new ComputersRequest($this->auth, $this->headers))->getResponse();
+        return $request->getResponse($computer);
     }
 
     /**
      * @param null|int|array $computers
      * @return DeleteConfirmationResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function deleteComputers($computers = null): DeleteConfirmationResponse
     {
-        return (new ComputersDeleteRequest($this->auth, $this->headers))->getResponse($computers);
-    }
+        $request = new ComputersDeleteRequest($this->auth, $this->headers);
 
-    /**
-     * @param int $printer
-     * @return PrinterResponse
-     */
-    public function getPrinter(int $printer): PrinterResponse
-    {
-        return (new PrinterRequest($this->auth, $this->headers))->getResponse($printer);
+        return $request->getResponse($computers);
     }
 
     /**
      * @return PrintersResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getPrinters(): PrintersResponse
     {
-        return (new PrintersRequest($this->auth, $this->headers))->getResponse();
+        $request = new PrintersRequest($this->auth, $this->headers);
+
+        return $request->getResponse();
+    }
+
+    /**
+     * @param int $printer
+     * @return PrinterResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function getPrinter(int $printer): PrinterResponse
+    {
+        $request = new PrinterRequest($this->auth, $this->headers);
+
+        return $request->getResponse($printer);
     }
 
     /**
      * @param null|int|array $printers
      * @return DeleteConfirmationResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function deletePrinters($printers = null): DeleteConfirmationResponse
     {
-        return (new PrintersDeleteRequest($this->auth, $this->headers))->getResponse($printers);
+        $request = new PrintersDeleteRequest($this->auth, $this->headers);
+
+        return $request->getResponse($printers);
+    }
+
+    /**
+     * @param int $computer
+     * @return PrintersResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function getComputerPrinters(int $computer): PrintersResponse
+    {
+        $request = new ComputerPrintersRequest($this->auth, $this->headers);
+
+        return $request->getResponse($computer);
     }
 
     /**
      * @param int $computer
      * @param int $printer
      * @return PrinterResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getComputerPrinter(int $computer, int $printer): PrinterResponse
     {
-        return (new ComputerPrinterRequest($this->auth, $this->headers))->getResponse($computer, $printer);
-    }
+        $request = new ComputerPrinterRequest($this->auth, $this->headers);
 
-    /**
-     * @param int $computer
-     * @return PrintersResponse
-     */
-    public function getComputerPrinters(int $computer): PrintersResponse
-    {
-        return (new ComputerPrintersRequest($this->auth, $this->headers))->getResponse($computer);
+        return $request->getResponse($computer, $printer);
     }
 
     /**
      * @param int $computer
      * @param null|int|array $printers
      * @return DeleteConfirmationResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function deleteComputerPrinters(int $computer, $printers = null): DeleteConfirmationResponse
     {
-        return (new ComputerPrintersDeleteRequest($this->auth, $this->headers))->getResponse($computer, $printers);
+        $request = new ComputerPrintersDeleteRequest($this->auth, $this->headers);
+
+        return $request->getResponse($computer, $printers);
     }
 
     /**
      * @param int $printer
      * @param string $title
      * @param string $source
-     * @return PrintJobRequestUrl
+     * @return PrintJobFile
      */
-    public function createPrintJobUrl(int $printer, string $title, string $source): PrintJobRequestUrl
+    public function createPrintJobFile(int $printer, string $title, string $source): PrintJobFile
     {
-        return new PrintJobRequestUrl($this->auth, $this->headers, $printer, $title, $source);
+        return new PrintJobFile($this->auth, $this->headers, $printer, $title, $source);
     }
 
     /**
      * @param int $printer
      * @param string $title
      * @param string $source
-     * @return PrintJobRequestFile
+     * @return PrintJobUrl
      */
-    public function createPrintJobFile(int $printer, string $title, string $source): PrintJobRequestFile
+    public function createPrintJobUrl(int $printer, string $title, string $source): PrintJobUrl
     {
-        return new PrintJobRequestFile($this->auth, $this->headers, $printer, $title, $source);
+        return new PrintJobUrl($this->auth, $this->headers, $printer, $title, $source);
+    }
+
+    public function getPrintJobs()
+    {
+
+    }
+
+    public function deletePrintJobs()
+    {
+
+    }
+
+    public function getClient()
+    {
+
+    }
+
+    public function getClients()
+    {
+
+    }
+
+    /**
+     * @return bool
+     * @throws TransportExceptionInterface
+     */
+    public function noop(): bool
+    {
+        $request = new NoopRequest($this->auth, $this->headers);
+
+        return $request->getResponse();
+    }
+
+    /**
+     * @return bool
+     * @throws TransportExceptionInterface
+     */
+    public static function ping(): bool
+    {
+        $request = new PingRequest();
+
+        return $request->getResponse();
     }
 }

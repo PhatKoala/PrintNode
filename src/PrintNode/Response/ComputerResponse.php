@@ -2,6 +2,10 @@
 
 namespace Bigstylee\PrintNode\Response;
 
+use DateTime;
+use DateTimeInterface;
+use Exception;
+
 /**
  * Class ComputerResponse
  * @author Stewart Walter <code@bigstylee.co.uk>
@@ -44,7 +48,7 @@ class ComputerResponse extends AbstractResponse
     private $jre;
 
     /**
-     * @var \DateTime
+     * @var DateTimeInterface
      */
     private $createTimestamp;
 
@@ -187,9 +191,9 @@ class ComputerResponse extends AbstractResponse
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTimeInterface|null
      */
-    public function getCreateTimestamp(): ?\DateTime
+    public function getCreateTimestamp(): ?DateTimeInterface
     {
         return $this->createTimestamp;
     }
@@ -197,12 +201,12 @@ class ComputerResponse extends AbstractResponse
     /**
      * @param $createTimestamp
      * @return $this
-     * @throws \Exception
+     * @throws Exception
      */
     protected function setCreateTimestamp($createTimestamp)
     {
         if (is_string($createTimestamp)) {
-            $createTimestamp = new \DateTime($createTimestamp);
+            $createTimestamp = new DateTime($createTimestamp);
         }
 
         $this->createTimestamp = $createTimestamp;

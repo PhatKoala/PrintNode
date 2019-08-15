@@ -3,6 +3,11 @@
 namespace Bigstylee\PrintNode\Request;
 
 use Bigstylee\PrintNode\Response\PrintersResponse;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class ComputerPrintersRequest
@@ -13,6 +18,11 @@ class ComputerPrintersRequest extends AbstractRequest
     /**
      * @param integer $computer
      * @return PrintersResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getResponse(int $computer)
     {

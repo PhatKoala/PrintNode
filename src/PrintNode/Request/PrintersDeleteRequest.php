@@ -3,6 +3,11 @@
 namespace Bigstylee\PrintNode\Request;
 
 use Bigstylee\PrintNode\Response\DeleteConfirmationResponse;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class PrintersDeleteRequest
@@ -11,8 +16,13 @@ use Bigstylee\PrintNode\Response\DeleteConfirmationResponse;
 class PrintersDeleteRequest extends AbstractRequest
 {
     /**
-     * @param null|integer|iterable $printers
+     * @param null|int|array $printers
      * @return DeleteConfirmationResponse
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getResponse($printers = null)
     {
@@ -21,12 +31,10 @@ class PrintersDeleteRequest extends AbstractRequest
         if (is_null($printers)) {
             $response = $this->request->request('DELETE', sprintf($this->url, 'printers'));
         }
-
-        if (is_numeric($printers)) {
+        else if (is_int($printers) || (is_string($printers) && ctype_digit($printers))) {
             $response = $this->request->request('DELETE', sprintf($this->url, sprintf('printers/%d', $printers)));
         }
-
-        if (is_iterable($printers)) {
+        else if (is_array($printers)) {
             $printers = implode(',', array_filter(array_map('intval', $printers)));
             if (!empty($printers)) {
                 $response = $this->request->request('DELETE', sprintf($this->url, sprintf('printers/%s', $printers)));

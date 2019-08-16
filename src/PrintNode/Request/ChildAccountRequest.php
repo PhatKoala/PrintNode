@@ -1,15 +1,13 @@
 <?php
 
-namespace Bigstylee\PrintNode\Request\PrintJob;
+namespace Bigstylee\PrintNode\Request;
 
-use Bigstylee\PrintNode\Request\AbstractRequest;
 use Bigstylee\PrintNode\Response\ChildAccountResponse;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * Class ChildAccountRequest
@@ -155,7 +153,7 @@ class ChildAccountRequest extends AbstractRequest
      * @param string $firstname
      * @return ChildAccountRequest
      */
-    public function setFirstname(string $firstname)
+    public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
 
@@ -174,7 +172,7 @@ class ChildAccountRequest extends AbstractRequest
      * @param string $lastname
      * @return ChildAccountRequest
      */
-    public function setLastname(string $lastname)
+    public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
 
@@ -193,7 +191,7 @@ class ChildAccountRequest extends AbstractRequest
      * @param string $email
      * @return ChildAccountRequest
      */
-    public function setEmail(string $email)
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -212,7 +210,7 @@ class ChildAccountRequest extends AbstractRequest
      * @param string $password
      * @return ChildAccountRequest
      */
-    public function setPassword(string $password)
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
@@ -231,7 +229,7 @@ class ChildAccountRequest extends AbstractRequest
      * @param string $creatorRef
      * @return ChildAccountRequest
      */
-    public function setCreatorRef(string $creatorRef)
+    public function setCreatorRef(string $creatorRef): self
     {
         $this->creatorRef = $creatorRef;
 
@@ -250,9 +248,48 @@ class ChildAccountRequest extends AbstractRequest
      * @param array $apiKeys
      * @return ChildAccountRequest
      */
-    public function setApiKeys(array $apiKeys)
+    public function setApiKeys(array $apiKeys): self
     {
         $this->apiKeys = $apiKeys;
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return ChildAccountRequest
+     */
+    public function addApiKey(string $name): self
+    {
+        if (!in_array($name, $this->apiKeys)) {
+            $this->apiKeys[] = $name;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param array $apiKeys
+     * @return ChildAccountRequest
+     */
+    public function addApiKeys(array $apiKeys): self
+    {
+        foreach ($apiKeys as $apiKey) {
+            $this->addApiKey($apiKey);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return ChildAccountRequest
+     */
+    public function removeApiKey(string $name): self
+    {
+        if (($key = array_search($name, $this->apiKeys)) !== false) {
+            unset($this->apiKeys[$key]);
+        }
 
         return $this;
     }
@@ -272,6 +309,44 @@ class ChildAccountRequest extends AbstractRequest
     public function setTags(array $tags)
     {
         $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param string $value
+     * @return ChildAccountRequest
+     */
+    public function addTag(string $name, string $value): self
+    {
+        $this->tags[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param array $tags
+     * @return ChildAccountRequest
+     */
+    public function addTags(array $tags): self
+    {
+        foreach ($tags as $name => $value) {
+            $this->addTag($name, $value);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return ChildAccountRequest
+     */
+    public function removeTag(string $name): self
+    {
+        if (isset($this->tags[$name])) {
+            unset($this->tags[$name]);
+        }
 
         return $this;
     }

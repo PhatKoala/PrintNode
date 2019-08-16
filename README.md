@@ -121,7 +121,7 @@ $printJobUrl->send('https://www.domain.com/path/to/file.pdf'); // returns Print 
 ### [Creating](https://www.printnode.com/en/docs/api/curl#account-creation)
 ```php
 // POST /account
-
+$printNode->createAccount('email@domain.com', 'my-passw0rd'); // returns ChildAccountRequest
 ```
 ### [Modifying](https://www.printnode.com/en/docs/api/curl#account-modification)
 ```php
@@ -140,7 +140,11 @@ $printJobUrl->send('https://www.domain.com/path/to/file.pdf'); // returns Print 
 ```
 ### [Controlling](https://www.printnode.com/en/docs/api/curl#account-controlling)
 ```php
-
+$childAccount = $printNode->getChildAccount($id); // returns PrintNode
+// or
+$childAccount = $printNode->getChildAccount($email, PrintNode::$CHILD_AUTH_BY_EMAIL); // returns PrintNode
+// or
+$childAccount = $printNode->getChildAccount($creatorRef, PrintNode::$CHILD_AUTH_BY_CREATOR_REF); // returns PrintNode
 ```
 ### [Tagging](https://www.printnode.com/en/docs/api/curl#account-tagging)
 ```php
@@ -160,13 +164,9 @@ $printJobUrl->send('https://www.domain.com/path/to/file.pdf'); // returns Print 
 // DELETE /account/apikey/DESCRIPTION
 
 ```
-### [Delegated Authentication](https://www.printnode.com/en/docs/api/curl#account-delegated-auth)
-```php
-
-```
 ### [Client Downloads](https://www.printnode.com/en/docs/api/curl#account-download-management)
 ```php
-
+$clientKey = $childAccount->getClientKey($uuid, $edition, $version); // returns string 
 ```
 
 ## [Miscellaneous](https://www.printnode.com/en/docs/api/curl#misc)

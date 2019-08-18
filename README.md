@@ -121,7 +121,24 @@ $printJobUrl->send('https://www.domain.com/path/to/file.pdf'); // returns Print 
 ### [Creating](https://www.printnode.com/en/docs/api/curl#account-creation)
 ```php
 // POST /account
-$printNode->createAccount('email@domain.com', 'my-passw0rd'); // returns ChildAccountRequest
+$newAccount = $printNode->createAccount('email@domain.com', 'my-passw0rd'); // returns ChildAccountRequest
+$newAccount
+  ->setCreatorRef('my-unique-reference')
+  ->addTag('likes' => 'dogs')
+  ->addTags([
+      'eats' => 'pie',
+      'plays' => 'football',
+  ])
+  ->removeTag('eats')
+  ->addApiKey('development')
+  ->addApiKeys([
+      'staging'',
+      'production'',
+  ])
+  ->removeApiKey('development');
+  
+$newAccount->send(); // returns ChildAccountResponse
+
 ```
 ### [Modifying](https://www.printnode.com/en/docs/api/curl#account-modification)
 ```php

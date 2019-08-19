@@ -124,7 +124,7 @@ $printJobUrl->send('https://www.domain.com/path/to/file.pdf'); // returns Print 
 $newAccount = $printNode->createAccount('email@domain.com', 'my-passw0rd'); // returns ChildAccountRequest
 $newAccount
   ->setCreatorRef('my-unique-reference')
-  ->addTag('likes' => 'dogs')
+  ->addTag('likes', 'dogs')
   ->addTags([
       'eats' => 'pie',
       'plays' => 'football',

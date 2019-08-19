@@ -171,11 +171,11 @@ abstract class AbstractPrintJob extends AbstractRequest
     {
         $options = array_filter([
             'bin' => $this->getBin(),
-            'collate' => $this->isCollate(),
+            'collate' => $this->getCollate(),
             'copies' => $this->getCopies(),
             'dpi' => $this->getDpi(),
             'duplex' => $this->getDuplex(),
-            'fit_to_page' => $this->isFitToPage(),
+            'fit_to_page' => $this->getFitToPage(),
             'media' => $this->getMedia(),
             'nup' => $this->getNup(),
             'pages' => $this->getPages(),

@@ -59,7 +59,7 @@ class ChildAccountRequest extends AbstractRequest
     /**
      * A unique reference which you can use as a method to identify an account.
      *
-     * @var string
+     * @var string|null
      */
     private $creatorRef;
 
@@ -127,7 +127,7 @@ class ChildAccountRequest extends AbstractRequest
             'lastname' => $this->getLastname(),
             'email' => $this->getEmail(),
             'password' => $this->getPassword(),
-            'creatorRef' =>$this->getReference(),
+            'creatorRef' => $this->getCreatorRef(),
         ], function ($value) {
             return !is_null($value);
         });
@@ -218,18 +218,18 @@ class ChildAccountRequest extends AbstractRequest
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCreatorRef(): string
+    public function getCreatorRef(): ?string
     {
         return $this->creatorRef;
     }
 
     /**
-     * @param string $creatorRef
+     * @param string|null $creatorRef
      * @return ChildAccountRequest
      */
-    public function setCreatorRef(string $creatorRef): self
+    public function setCreatorRef(?string $creatorRef): self
     {
         $this->creatorRef = $creatorRef;
 

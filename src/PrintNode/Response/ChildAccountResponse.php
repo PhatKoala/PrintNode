@@ -75,6 +75,18 @@ class ChildAccountResponse extends AbstractResponse
     private $credits;
 
     /**
+     * ChildAccountResponse constructor.
+     * @param iterable $response
+     * @param iterable|null $headers
+     */
+    public function __construct(iterable $response, iterable $headers = null)
+    {
+        parent::__construct($response, $headers);
+
+        $this->setFromArray($response['Account']);
+    }
+
+    /**
      * @param int $id
      * @return ChildAccountResponse
      */

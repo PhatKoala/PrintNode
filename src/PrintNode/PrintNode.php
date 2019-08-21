@@ -80,6 +80,14 @@ class PrintNode
     }
 
     /**
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
+    /**
      * @param int $child
      * @param string $childAuthBy
      * @return PrintNode

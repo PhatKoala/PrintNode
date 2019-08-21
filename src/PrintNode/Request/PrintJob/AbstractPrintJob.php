@@ -397,12 +397,12 @@ abstract class AbstractPrintJob extends AbstractRequest
     }
 
     /**
-     * @param string $duplex
+     * @param bool $duplex
      * @return AbstractPrintJob
      */
-    public function setDuplex(string $duplex)
+    public function setDuplex(bool $duplex)
     {
-        $this->duplex = $duplex;
+        $this->duplex = ($duplex) ? 'long-edge' : 'one-sided';
 
         return $this;
     }

@@ -24,6 +24,14 @@ abstract class AbstractResponse
             $this->headers = new ResponseHeaders($headers);
         }
 
+        $this->setFromArray($response);
+    }
+
+    /**
+     * @param iterable $response
+     */
+    protected function setFromArray(iterable $response)
+    {
         foreach ($response as $name => $value) {
             $method = 'set'.ucfirst($name);
             if (method_exists($this, $method)) {

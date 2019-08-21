@@ -133,9 +133,9 @@ class ChildAccountRequest extends AbstractRequest
         });
 
         return array_filter([
-            'account' => $account,
+            'Account' => $account,
             'ApiKeys' => $this->getApiKeys(),
-            'Tags' => $this->getTags(),
+            'Tags' => (object) $this->getTags(),
         ], function ($value) {
             return !is_null($value);
         });

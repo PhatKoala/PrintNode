@@ -26,20 +26,12 @@ class PrintJobUrl extends AbstractPrintJob implements PrintJobInterface
         $response = $this->request->request('POST', sprintf($this->url, 'printjobs'), [
             'body' => json_encode(
                 array_merge([
-                    'contentType' => $this->getType(),
+                    'contentType' => $this->type,
                     'content' => $url,
                 ], $this->buildRequest())
             )
         ]);
 
         return $response;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
     }
 }

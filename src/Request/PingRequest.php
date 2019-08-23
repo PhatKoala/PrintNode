@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Bigstylee\PrintNode\Request;
 
@@ -23,7 +24,6 @@ class PingRequest
 
     /**
      * AbstractRequest constructor.
-     * @param array $headers
      */
     public function __construct()
     {

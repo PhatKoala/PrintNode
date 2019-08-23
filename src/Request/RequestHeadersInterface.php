@@ -10,6 +10,11 @@ namespace Bigstylee\PrintNode\Request;
 interface RequestHeadersInterface
 {
     /**
+     * @return array
+     */
+    public function getHeaders(): array;
+
+    /**
      * @param $name
      * @param $value
      * @return self

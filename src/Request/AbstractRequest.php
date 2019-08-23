@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Bigstylee\PrintNode\Request;
 
@@ -22,22 +23,15 @@ abstract class AbstractRequest
 
     /**
      * AbstractRequest constructor.
-     * @param $auth
-     * @param array $headers
+     *
+     * @param string $auth
+     * @param RequestHeadersInterface $headers
      */
-    public function __construct($auth, iterable $headers = [])
+    public function __construct(string $auth, RequestHeadersInterface $headers)
     {
         $this->request = new CurlHttpClient([
             'auth_basic' => $auth,
-            'headers' => $headers,
+            'headers' => $headers->getHeaders(),
         ]);
-    }
-
-    /**
-     * @return CurlHttpClient
-     */
-    public function getRequest(): CurlHttpClient
-    {
-        return $this->request;
     }
 }

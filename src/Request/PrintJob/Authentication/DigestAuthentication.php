@@ -22,6 +22,7 @@ class DigestAuthentication implements AuthenticationInterface
 
     /**
      * DigestAuthentication constructor.
+     *
      * @param string $username
      * @param string $password
      */

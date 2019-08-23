@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Bigstylee\PrintNode\Request;
 
-use Bigstylee\PrintNode\PrintNode;
 use Iterator;
 
 /**
@@ -18,6 +17,14 @@ class RequestHeaders implements RequestHeadersInterface, Iterator
     private $headers = [
         'Content-Type' => 'application/json'
     ];
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
 
     /**
      * @param $name

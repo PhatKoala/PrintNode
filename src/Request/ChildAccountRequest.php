@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Bigstylee\PrintNode\Request;
 
@@ -82,12 +83,13 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * ChildAccountRequest constructor.
+     *
      * @param $auth
-     * @param array $headers
+     * @param RequestHeadersInterface $headers
      * @param string $email
      * @param string $password
      */
-    public function __construct($auth, iterable $headers, string $email, string $password)
+    public function __construct(string $auth, RequestHeadersInterface $headers, string $email, string $password)
     {
         parent::__construct($auth, $headers);
 
@@ -151,7 +153,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param string $firstname
-     * @return ChildAccountRequest
+     * @return self
      */
     public function setFirstname(string $firstname): self
     {
@@ -170,7 +172,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param string $lastname
-     * @return ChildAccountRequest
+     * @return self
      */
     public function setLastname(string $lastname): self
     {
@@ -189,7 +191,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param string $email
-     * @return ChildAccountRequest
+     * @return self
      */
     public function setEmail(string $email): self
     {
@@ -208,7 +210,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param string $password
-     * @return ChildAccountRequest
+     * @return self
      */
     public function setPassword(string $password): self
     {
@@ -227,7 +229,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param string|null $creatorRef
-     * @return ChildAccountRequest
+     * @return self
      */
     public function setCreatorRef(?string $creatorRef): self
     {
@@ -246,7 +248,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param array $apiKeys
-     * @return ChildAccountRequest
+     * @return self
      */
     public function setApiKeys(array $apiKeys): self
     {
@@ -257,7 +259,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param string $name
-     * @return ChildAccountRequest
+     * @return self
      */
     public function addApiKey(string $name): self
     {
@@ -270,7 +272,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param array $apiKeys
-     * @return ChildAccountRequest
+     * @return self
      */
     public function addApiKeys(array $apiKeys): self
     {
@@ -283,7 +285,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param string $name
-     * @return ChildAccountRequest
+     * @return self
      */
     public function removeApiKey(string $name): self
     {
@@ -304,7 +306,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param array $tags
-     * @return ChildAccountRequest
+     * @return self
      */
     public function setTags(array $tags)
     {
@@ -316,7 +318,7 @@ class ChildAccountRequest extends AbstractRequest
     /**
      * @param string $name
      * @param string $value
-     * @return ChildAccountRequest
+     * @return self
      */
     public function addTag(string $name, string $value): self
     {
@@ -327,7 +329,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param array $tags
-     * @return ChildAccountRequest
+     * @return self
      */
     public function addTags(array $tags): self
     {
@@ -340,7 +342,7 @@ class ChildAccountRequest extends AbstractRequest
 
     /**
      * @param string $name
-     * @return ChildAccountRequest
+     * @return self
      */
     public function removeTag(string $name): self
     {

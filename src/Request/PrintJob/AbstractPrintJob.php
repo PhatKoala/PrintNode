@@ -4,6 +4,7 @@ namespace Bigstylee\PrintNode\Request\PrintJob;
 
 use Bigstylee\PrintNode\Request\AbstractRequest;
 use Bigstylee\PrintNode\Request\PrintJob\Authentication\AuthenticationInterface;
+use Bigstylee\PrintNode\Request\RequestHeadersInterface;
 
 /**
  * Class AbstractPrintJob
@@ -148,13 +149,14 @@ abstract class AbstractPrintJob extends AbstractRequest
 
     /**
      * AbstractPrintJobRequest constructor.
+     * 
      * @param $auth
-     * @param array $headers
+     * @param RequestHeadersInterface $headers
      * @param int $printer
      * @param string $title
      * @param string $source
      */
-    public function __construct($auth, array $headers = [], int $printer, string $title, string $source)
+    public function __construct($auth, RequestHeadersInterface $headers, int $printer, string $title, string $source)
     {
         parent::__construct($auth, $headers);
 

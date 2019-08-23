@@ -4,7 +4,6 @@ namespace Bigstylee\PrintNode\Response;
 
 use DateTime;
 use DateTimeInterface;
-use Exception;
 
 /**
  * Class ComputerResponse

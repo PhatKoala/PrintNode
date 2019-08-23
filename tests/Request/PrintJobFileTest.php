@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Bigstylee\PrintNode\Tests\Request;
 
 use Bigstylee\PrintNode\Request\PrintJob\PrintJobFile;
+use Bigstylee\PrintNode\Request\RequestHeaders;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,7 @@ final class PrintJobFileTest extends TestCase
 {
     public function testSetters()
     {
-        $printJob = new PrintJobFile(null, [], 17, 'Print Job File Title', 'Print Job File Source');
+        $printJob = new PrintJobFile('my-api-key', new RequestHeaders(), 17, 'Print Job File Title', 'Print Job File Source');
         $this->assertEquals('Print Job File Title', $printJob->getTitle());
         $this->assertEquals('Print Job File Source', $printJob->getSource());
     }

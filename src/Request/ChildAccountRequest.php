@@ -87,7 +87,7 @@ class ChildAccountRequest extends AbstractRequest
      * @param string $email
      * @param string $password
      */
-    public function __construct($auth, array $headers, string $email, string $password)
+    public function __construct($auth, iterable $headers, string $email, string $password)
     {
         parent::__construct($auth, $headers);
 

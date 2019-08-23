@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Bigstylee\PrintNode;
 
@@ -17,6 +18,8 @@ use Bigstylee\PrintNode\Request\PrintersDeleteRequest;
 use Bigstylee\PrintNode\Request\PrintersRequest;
 use Bigstylee\PrintNode\Request\PrintJob\PrintJobFile;
 use Bigstylee\PrintNode\Request\PrintJob\PrintJobUrl;
+use Bigstylee\PrintNode\Request\RequestHeaders;
+use Bigstylee\PrintNode\Request\RequestHeadersInterface;
 use Bigstylee\PrintNode\Request\WhoAmIRequest;
 use Bigstylee\PrintNode\Response\ComputerResponse;
 use Bigstylee\PrintNode\Response\ComputersResponse;
@@ -37,100 +40,82 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
  */
 class PrintNode
 {
-    public static $CHILD_AUTH_BY_ID = 'id';
-    public static $CHILD_AUTH_BY_EMAIL = 'email';
-    public static $CHILD_AUTH_BY_CREATOR_REF = 'creatorRef';
-
     /**
      * @var string
      */
     protected $auth;
 
     /**
-     * @var array
+     * @var RequestHeadersInterface
      */
-    protected $headers = [
-        'Content-Type' => 'application/json'
-    ];
+    protected $headers;
+
+    /**
+     * @var string
+     */
+    public static $CHILD_AUTH_BY_ID = 'id';
+
+    /**
+     * @var string
+     */
+    public static $CHILD_AUTH_BY_EMAIL = 'email';
+
+    /**
+     * @var string
+     */
+    public static $CHILD_AUTH_BY_CREATOR_REF = 'creatorRef';
 
     /**
      * PrintNode constructor.
      * @param string $auth
+     * @param RequestHeadersInterface|null $headers
      * @param int|null $child
      * @param string $childAuthBy
      */
-    public function __construct(string $auth, int $child = null, $childAuthBy = 'id')
+    public function __construct(string $auth, RequestHeadersInterface $headers = null, int $child = null, $childAuthBy = 'id')
     {
         $this->auth = $auth;
+        $this->headers = (is_null($headers)) ? new RequestHeaders() : $headers;
 
         if (!is_null($child)) {
-            if (self::$CHILD_AUTH_BY_ID === $childAuthBy) {
-                $this->addHeader('X-Child-Account-By-Id', $child);
-            }
-            elseif (self::$CHILD_AUTH_BY_EMAIL === $childAuthBy) {
-                $this->addHeader('X-Child-Account-By-Email', $child);
-            }
-            elseif (self::$CHILD_AUTH_BY_CREATOR_REF === $childAuthBy) {
-                $this->addHeader('X-Child-Account-By-CreatorRef', $child);
-            }
-            else {
-                throw new InvalidArgumentException(sprintf('Unknown value for $childAuthBy: %s', $childAuthBy));
+            switch ($childAuthBy) {
+                case self::$CHILD_AUTH_BY_ID:
+                    $this->headers->addHeader('X-Child-Account-By-Id', $child);
+                    break;
+
+                case self::$CHILD_AUTH_BY_EMAIL:
+                    $this->headers->addHeader('X-Child-Account-By-Email', $child);
+                    break;
+
+                case self::$CHILD_AUTH_BY_CREATOR_REF:
+                    $this->headers->addHeader('X-Child-Account-By-CreatorRef', $child);
+                    break;
+
+                default:
+                    throw new InvalidArgumentException(sprintf('Unknown value for $childAuthBy: %s', $childAuthBy));
             }
         }
-    }
-
-    /**
-     * @return array
-     */
-    public function getHeaders(): array
-    {
-        return $this->headers;
     }
 
     /**
      * @param int $child
      * @param string $childAuthBy
-     * @return PrintNode
+     * @return self
      */
     public function getChildAccount(int $child, $childAuthBy = 'id'): self
     {
-        return new self($this->auth, $child, $childAuthBy);
-    }
-
-    /**
-     * @param $name
-     * @param $value
-     * @return $this
-     */
-    protected function addHeader($name, $value): self
-    {
-        $this->headers[$name] = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param $name
-     * @return $this
-     */
-    protected function removeHeader($name): self
-    {
-        if (isset($this->headers[$name])) {
-            unset($this->headers[$name]);
-        }
-
-        return $this;
+        return new self($this->auth, clone $this->headers, $child, $childAuthBy);
     }
 
     /**
      * https://www.printnode.com/en/docs/api/curl#versioning
      *
      * @param string|null $version
-     * @return $this
+     * @return self
      */
     public function setVersion($version): self
     {
-        (is_null($version)) ? $this->removeHeader('Accept-Version') : $this->addHeader('Accept-Version', $version);
+        (is_null($version)) ? $this->headers->removeHeader('Accept-Version') : $this->headers->addHeader('Accept-Version', $version);
 
         return $this;
     }
@@ -139,11 +124,11 @@ class PrintNode
      * https://www.printnode.com/en/docs/api/curl#headers
      *
      * @param boolean $pretty
-     * @return $this
+     * @return self
      */
     public function setPretty($pretty): self
     {
-        ($pretty) ? $this->addHeader('X-Pretty', '') : $this->removeHeader('X-Pretty');
+        ($pretty) ? $this->headers->addHeader('X-Pretty', '') : $this->headers->removeHeader('X-Pretty');
 
         return $this;
     }

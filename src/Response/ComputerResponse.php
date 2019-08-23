@@ -141,7 +141,7 @@ class ComputerResponse extends AbstractResponse
     protected function setCreateTimestamp($createTimestamp): self
     {
         if (is_string($createTimestamp)) {
-            $createTimestamp = DateTime::createFromFormat($createTimestamp, 'c');
+            $createTimestamp = DateTime::createFromFormat('Y-m-d\TH:i:s.v\Z', $createTimestamp);
 
             if (false === $createTimestamp) {
                 $createTimestamp = null;

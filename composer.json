@@ -25,9 +25,17 @@
     "ext-json": "*",
     "symfony/http-client": "4.3.*"
   },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  },
   "autoload": {
     "psr-4": {
-      "Bigstylee\\PrintNode\\": "src/PrintNode"
+      "Bigstylee\\PrintNode\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Bigstylee\\PrintNode\\Tests\\": "tests/"
     }
   }
 }

@@ -41,7 +41,7 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     /**
      * @var array
      */
-    private $extend;
+    private $extent;
 
     /**
      * @var array
@@ -135,12 +135,12 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     }
 
     /**
-     * @param array $extend
+     * @param array $extent
      * @return PrinterCapabilitiesResponse
      */
-    protected function setExtend(array $extend): self
+    protected function setExtent(array $extent): self
     {
-        $this->extend = $extend;
+        $this->extent = $extent;
 
         return $this;
     }
@@ -251,9 +251,9 @@ class PrinterCapabilitiesResponse extends AbstractResponse
     /**
      * @return array
      */
-    public function getExtend(): array
+    public function getExtent(): array
     {
-        return $this->extend;
+        return $this->extent;
     }
 
     /**

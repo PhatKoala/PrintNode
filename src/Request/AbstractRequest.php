@@ -25,7 +25,7 @@ abstract class AbstractRequest
      * @param $auth
      * @param array $headers
      */
-    public function __construct($auth, array $headers = [])
+    public function __construct($auth, iterable $headers = [])
     {
         $this->request = new CurlHttpClient([
             'auth_basic' => $auth,

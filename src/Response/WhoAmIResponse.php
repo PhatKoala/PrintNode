@@ -39,6 +39,11 @@ class WhoAmIResponse extends AbstractResponse
     private $creatorEmail;
 
     /**
+     * @var null|string
+     */
+    private $creatorRef;
+
+    /**
      * @var array
      */
     private $childAccounts = [ ];
@@ -85,7 +90,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param int $id
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setId(int $id): self
     {
@@ -96,7 +101,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param string $firstname
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setFirstname(string $firstname): self
     {
@@ -107,7 +112,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param string $lastname
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setLastname(string $lastname): self
     {
@@ -118,7 +123,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param string $email
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setEmail(string $email): self
     {
@@ -129,7 +134,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param bool $canCreateSubAccounts
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setCanCreateSubAccounts(bool $canCreateSubAccounts): self
     {
@@ -140,7 +145,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param string|null $creatorEmail
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setCreatorEmail(?string $creatorEmail): self
     {
@@ -150,8 +155,19 @@ class WhoAmIResponse extends AbstractResponse
     }
 
     /**
+     * @param string|null $creatorRef
+     * @return self
+     */
+    public function setCreatorRef(?string $creatorRef)
+    {
+        $this->creatorRef = $creatorRef;
+
+        return $this;
+    }
+
+    /**
      * @param array $childAccounts
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setChildAccounts(array $childAccounts): self
     {
@@ -162,7 +178,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param int|null $credits
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setCredits(?int $credits): self
     {
@@ -173,7 +189,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param int $numComputers
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setNumComputers(int $numComputers): self
     {
@@ -184,7 +200,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param int $totalPrints
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setTotalPrints(int $totalPrints): self
     {
@@ -195,7 +211,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param array $versions
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setVersions(array $versions): self
     {
@@ -206,7 +222,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param array $connected
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setConnected(array $connected): self
     {
@@ -217,7 +233,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param array $tags
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setTags(array $tags): self
     {
@@ -228,7 +244,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param string $state
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setState(string $state): self
     {
@@ -239,7 +255,7 @@ class WhoAmIResponse extends AbstractResponse
 
     /**
      * @param array $permissions
-     * @return WhoAmIResponse
+     * @return self
      */
     protected function setPermissions(array $permissions): self
     {
@@ -294,6 +310,14 @@ class WhoAmIResponse extends AbstractResponse
     public function getCreatorEmail(): ?string
     {
         return $this->creatorEmail;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCreatorRef(): ?string
+    {
+        return $this->creatorRef;
     }
 
     /**

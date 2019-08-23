@@ -33,7 +33,7 @@ abstract class AbstractResponse
     protected function setFromArray(iterable $response)
     {
         foreach ($response as $name => $value) {
-            $method = 'set'.ucfirst($name);
+            $method = 'set'.str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }

@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Bigstylee\PrintNode\Request;
+namespace PhatKoala\PrintNode\Request;
 
 use Iterator;
 
 /**
  * Class PrintersRequest
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 class RequestHeaders implements RequestHeadersInterface, Iterator
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Bigstylee\PrintNode\Request\PrintJob;
+namespace PhatKoala\PrintNode\Request\PrintJob;
 
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * Class PrintJobFile
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 class PrintJobFile extends AbstractPrintJob implements PrintJobInterface
 {

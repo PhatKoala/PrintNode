@@ -6,19 +6,18 @@ namespace PhatKoala\PrintNode\Request;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
- * Class NoopRequest
+ * Class ChildAccountActivateRequest
  * @author Stewart Walter <code@phatkoala.uk>
  */
-class NoopRequest extends AbstractRequest
+class ChildAccountActivateRequest extends AbstractRequest
 {
     /**
-     * @return bool
      * @throws TransportExceptionInterface
      */
-    public function getResponse()
+    public function getResponse(): void
     {
-        $response = $this->request->request('GET', sprintf($this->url, 'noop'));
-
-        return (200 === $response->getStatusCode()) ? true : false;
+        $this->request->request('PUT', sprintf($this->url, 'account/state'), [
+            'body' => 'suspended',
+        ]);
     }
 }

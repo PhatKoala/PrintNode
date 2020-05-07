@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Bigstylee\PrintNode\Tests\Response;
+namespace PhatKoala\PrintNode\Tests\Response;
 
-use Bigstylee\PrintNode\Response\WhoAmIResponse;
+use PhatKoala\PrintNode\Response\WhoAmIResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class WhoAmIResponseTest
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 final class WhoAmIResponseTest extends TestCase
 {

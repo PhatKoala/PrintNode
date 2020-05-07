@@ -1,33 +1,36 @@
 <?php
 declare(strict_types=1);
 
-namespace Bigstylee\PrintNode;
+namespace PhatKoala\PrintNode;
 
-use Bigstylee\PrintNode\Request\ChildAccountRequest;
-use Bigstylee\PrintNode\Request\ClientKeyRequest;
-use Bigstylee\PrintNode\Request\ComputerPrinterRequest;
-use Bigstylee\PrintNode\Request\ComputerPrintersDeleteRequest;
-use Bigstylee\PrintNode\Request\ComputerPrintersRequest;
-use Bigstylee\PrintNode\Request\ComputerRequest;
-use Bigstylee\PrintNode\Request\ComputersDeleteRequest;
-use Bigstylee\PrintNode\Request\ComputersRequest;
-use Bigstylee\PrintNode\Request\NoopRequest;
-use Bigstylee\PrintNode\Request\PingRequest;
-use Bigstylee\PrintNode\Request\PrinterRequest;
-use Bigstylee\PrintNode\Request\PrintersDeleteRequest;
-use Bigstylee\PrintNode\Request\PrintersRequest;
-use Bigstylee\PrintNode\Request\PrintJob\PrintJobFile;
-use Bigstylee\PrintNode\Request\PrintJob\PrintJobUrl;
-use Bigstylee\PrintNode\Request\RequestHeaders;
-use Bigstylee\PrintNode\Request\RequestHeadersInterface;
-use Bigstylee\PrintNode\Request\WhoAmIRequest;
-use Bigstylee\PrintNode\Response\ComputerResponse;
-use Bigstylee\PrintNode\Response\ComputersResponse;
-use Bigstylee\PrintNode\Response\DeleteConfirmationResponse;
-use Bigstylee\PrintNode\Response\PrinterResponse;
-use Bigstylee\PrintNode\Response\PrintersResponse;
-use Bigstylee\PrintNode\Response\WhoAmIResponse;
 use InvalidArgumentException;
+use PhatKoala\PrintNode\Request\ChildAccountActivateRequest;
+use PhatKoala\PrintNode\Request\ChildAccountDeleteRequest;
+use PhatKoala\PrintNode\Request\ChildAccountRequest;
+use PhatKoala\PrintNode\Request\ChildAccountSuspendRequest;
+use PhatKoala\PrintNode\Request\ClientKeyRequest;
+use PhatKoala\PrintNode\Request\ComputerPrinterRequest;
+use PhatKoala\PrintNode\Request\ComputerPrintersDeleteRequest;
+use PhatKoala\PrintNode\Request\ComputerPrintersRequest;
+use PhatKoala\PrintNode\Request\ComputerRequest;
+use PhatKoala\PrintNode\Request\ComputersDeleteRequest;
+use PhatKoala\PrintNode\Request\ComputersRequest;
+use PhatKoala\PrintNode\Request\NoopRequest;
+use PhatKoala\PrintNode\Request\PingRequest;
+use PhatKoala\PrintNode\Request\PrinterRequest;
+use PhatKoala\PrintNode\Request\PrintersDeleteRequest;
+use PhatKoala\PrintNode\Request\PrintersRequest;
+use PhatKoala\PrintNode\Request\PrintJob\PrintJobFile;
+use PhatKoala\PrintNode\Request\PrintJob\PrintJobUrl;
+use PhatKoala\PrintNode\Request\RequestHeaders;
+use PhatKoala\PrintNode\Request\RequestHeadersInterface;
+use PhatKoala\PrintNode\Request\WhoAmIRequest;
+use PhatKoala\PrintNode\Response\ComputerResponse;
+use PhatKoala\PrintNode\Response\ComputersResponse;
+use PhatKoala\PrintNode\Response\DeleteConfirmationResponse;
+use PhatKoala\PrintNode\Response\PrinterResponse;
+use PhatKoala\PrintNode\Response\PrintersResponse;
+use PhatKoala\PrintNode\Response\WhoAmIResponse;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -36,7 +39,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class PrintNode
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 class PrintNode
 {
@@ -342,6 +345,36 @@ class PrintNode
     public function createAccount(string $email, string $password)
     {
         return new ChildAccountRequest($this->auth, $this->headers, $email, $password);
+    }
+
+    /**
+     * Only works for child accounts
+     */
+    public function suspend()
+    {
+        $request = new ChildAccountSuspendRequest($this->auth, $this->headers);
+
+        $request->getResponse();
+    }
+
+    /**
+     * Only works for child accounts
+     */
+    public function activate()
+    {
+        $request = new ChildAccountActivateRequest($this->auth, $this->headers);
+
+        $request->getResponse();
+    }
+
+    /**
+     * Only works for child accounts
+     */
+    public function delete(): void
+    {
+        $request = new ChildAccountDeleteRequest($this->auth, $this->headers);
+
+        $request->getResponse();
     }
 
     /**

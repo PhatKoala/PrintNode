@@ -1,14 +1,14 @@
 <?php
 
-namespace Bigstylee\PrintNode\Request\PrintJob;
+namespace PhatKoala\PrintNode\Request\PrintJob;
 
-use Bigstylee\PrintNode\Request\AbstractRequest;
-use Bigstylee\PrintNode\Request\PrintJob\Authentication\AuthenticationInterface;
-use Bigstylee\PrintNode\Request\RequestHeadersInterface;
+use PhatKoala\PrintNode\Request\AbstractRequest;
+use PhatKoala\PrintNode\Request\PrintJob\Authentication\AuthenticationInterface;
+use PhatKoala\PrintNode\Request\RequestHeadersInterface;
 
 /**
  * Class AbstractPrintJob
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  *
  * https://www.printnode.com/en/docs/api/curl#printjob-options
  */

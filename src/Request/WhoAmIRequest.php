@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Bigstylee\PrintNode\Request;
+namespace PhatKoala\PrintNode\Request;
 
-use Bigstylee\PrintNode\Response\WhoAmIResponse;
+use PhatKoala\PrintNode\Response\WhoAmIResponse;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -12,7 +12,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class WhoAmIRequest
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 class WhoAmIRequest extends AbstractRequest
 {
@@ -24,7 +24,7 @@ class WhoAmIRequest extends AbstractRequest
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getResponse()
+    public function getResponse(): WhoAmIResponse
     {
         $response = $this->request->request('GET', sprintf($this->url, 'whoami'));
 

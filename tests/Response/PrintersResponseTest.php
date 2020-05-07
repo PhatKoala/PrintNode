@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Bigstylee\PrintNode\Tests\Response;
+namespace PhatKoala\PrintNode\Tests\Response;
 
-use Bigstylee\PrintNode\Response\ComputerResponse;
-use Bigstylee\PrintNode\Response\ComputersResponse;
-use Bigstylee\PrintNode\Response\PrinterCapabilitiesResponse;
-use Bigstylee\PrintNode\Response\PrinterResponse;
-use Bigstylee\PrintNode\Response\PrintersResponse;
+use PhatKoala\PrintNode\Response\ComputerResponse;
+use PhatKoala\PrintNode\Response\ComputersResponse;
+use PhatKoala\PrintNode\Response\PrinterCapabilitiesResponse;
+use PhatKoala\PrintNode\Response\PrinterResponse;
+use PhatKoala\PrintNode\Response\PrintersResponse;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class PrintersResponseTest
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 final class PrintersResponseTest extends TestCase
 {

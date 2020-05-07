@@ -6,19 +6,17 @@ namespace PhatKoala\PrintNode\Request;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
- * Class NoopRequest
+ * Class ChildAccountDeleteRequest
  * @author Stewart Walter <code@phatkoala.uk>
  */
-class NoopRequest extends AbstractRequest
+class ChildAccountDeleteRequest extends AbstractRequest
 {
     /**
-     * @return bool
      * @throws TransportExceptionInterface
      */
-    public function getResponse()
+    public function getResponse(): void
     {
-        $response = $this->request->request('GET', sprintf($this->url, 'noop'));
-
-        return (200 === $response->getStatusCode()) ? true : false;
+        $this->request->request('DELETE', sprintf($this->url, 'account'));
     }
+
 }

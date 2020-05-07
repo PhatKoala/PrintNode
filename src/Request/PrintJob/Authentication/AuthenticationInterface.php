@@ -1,10 +1,10 @@
 <?php
 
-namespace Bigstylee\PrintNode\Request\PrintJob\Authentication;
+namespace PhatKoala\PrintNode\Request\PrintJob\Authentication;
 
 /**
  * Interface AuthenticationInterface
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 interface AuthenticationInterface
 {

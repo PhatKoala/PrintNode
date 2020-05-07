@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Bigstylee\PrintNode\Tests\Response;
+namespace PhatKoala\PrintNode\Tests\Response;
 
-use Bigstylee\PrintNode\Response\ComputerResponse;
-use Bigstylee\PrintNode\Response\ComputersResponse;
+use PhatKoala\PrintNode\Response\ComputerResponse;
+use PhatKoala\PrintNode\Response\ComputersResponse;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ComputerResponseTest
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 final class ComputersResponseTest extends TestCase
 {

@@ -1,13 +1,13 @@
 {
-  "name": "bigstylee/printnode",
+  "name": "phatkoala/printnode",
   "description": "PHP API library for PrintNode - remote printing for web apps",
   "type": "library",
   "license": "MIT",
   "authors": [
     {
       "name": "Stewart Walter",
-      "email": "code@bigstylee.co.uk",
-      "homepage": "https://www.bigstylee.co.uk"
+      "email": "code@phatkoala.uk",
+      "homepage": "https://www.phatkoala.uk"
     }
   ],
   "keywords": [
@@ -30,12 +30,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Bigstylee\\PrintNode\\": "src/"
+      "PhatKoala\\PrintNode\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Bigstylee\\PrintNode\\Tests\\": "tests/"
+      "PhatKoala\\PrintNode\\Tests\\": "tests/"
     }
   }
 }

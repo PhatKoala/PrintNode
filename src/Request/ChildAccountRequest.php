@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Bigstylee\PrintNode\Request;
+namespace PhatKoala\PrintNode\Request;
 
-use Bigstylee\PrintNode\Response\ChildAccountResponse;
+use PhatKoala\PrintNode\Response\ChildAccountResponse;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -12,7 +12,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class ChildAccountRequest
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 class ChildAccountRequest extends AbstractRequest
 {

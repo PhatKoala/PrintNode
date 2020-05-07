@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Bigstylee\PrintNode\Request;
+namespace PhatKoala\PrintNode\Request;
 
 use Symfony\Component\HttpClient\CurlHttpClient;
 
 /**
  * Class AbstractRequest
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 abstract class AbstractRequest
 {

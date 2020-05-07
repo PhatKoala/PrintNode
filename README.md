@@ -21,6 +21,7 @@ $printNode->getComputers(); // returns ComputersResponse
 // GET /computers/COMPUTER SET
 $printNode->getComputer(int $computer); // returns ComputerResponse
 ```
+
 ### [Removing](https://www.printnode.com/en/docs/api/curl#computers-removing)
 ```php
 // DELETE /computers
@@ -45,6 +46,7 @@ $printNode->getComputerPrinters(int $computer); // returns PrintersResponse
 // GET /computers/COMPUTER SET/printers/PRINTER SET
 $printNode->getComputerPrinter(int $computer, int $printer); // returns PrinterResponse
 ```
+
 ### [Removing](https://www.printnode.com/en/docs/api/curl#printers-removing)
 ```php
 // DELETE /printers
@@ -70,6 +72,7 @@ $printJobFile->send('path/to/file.pdf'); // returns Print Job ID
 $printJobUrl = $printNode->createPrintJobUrl(int $printer, string $title, string $source); // returns PrintJobUrl
 $printJobUrl->send('https://www.domain.com/path/to/file.pdf'); // returns Print Job ID
 ```
+
 ### [Viewing](https://www.printnode.com/en/docs/api/curl#printjob-viewing)
 ```php
 // GET /printjobs
@@ -81,6 +84,7 @@ $printJobUrl->send('https://www.domain.com/path/to/file.pdf'); // returns Print 
 // GET /printers/PRINTER SET/printjobs/PRINT JOB SET
 
 ```
+
 ### [Removing](https://www.printnode.com/en/docs/api/curl#printjobs-removing)
 ```php
 // DELETE /printjobs
@@ -111,6 +115,7 @@ $printJobUrl->send('https://www.domain.com/path/to/file.pdf'); // returns Print 
 // GET /computer/COMPUTER ID/scale/DEVICE NAME/DEVICE NUMBER
 
 ```
+
 ### [Testing](https://www.printnode.com/en/docs/api/curl#scales-testing)
 ```php
 // PUT /scale
@@ -132,29 +137,35 @@ $newAccount
   ->removeTag('eats')
   ->addApiKey('development')
   ->addApiKeys([
-      'staging'',
-      'production'',
+      'staging',
+      'production',
   ])
   ->removeApiKey('development');
   
 $newAccount->send(); // returns ChildAccountResponse
-
 ```
+
 ### [Modifying](https://www.printnode.com/en/docs/api/curl#account-modification)
 ```php
 // PATCH /account
 
 ```
+
 ### [Suspending and Activating](https://www.printnode.com/en/docs/api/curl#account-suspension)
 ```php
 // PUT /account/state
-
+$childAccount = $printNode->getChildAccount($id); // returns PrintNode
+$childAccount->suspend();
+$childAccount->activate();
 ```
+
 ### [Deleting](https://www.printnode.com/en/docs/api/curl#account-deletion)
 ```php
 // DELETE /account
-
+$childAccount = $printNode->getChildAccount($id); // returns PrintNode
+$childAccount->delete();
 ```
+
 ### [Controlling](https://www.printnode.com/en/docs/api/curl#account-controlling)
 ```php
 $childAccount = $printNode->getChildAccount($id); // returns PrintNode
@@ -163,6 +174,7 @@ $childAccount = $printNode->getChildAccount($email, PrintNode::$CHILD_AUTH_BY_EM
 // or
 $childAccount = $printNode->getChildAccount($creatorRef, PrintNode::$CHILD_AUTH_BY_CREATOR_REF); // returns PrintNode
 ```
+
 ### [Tagging](https://www.printnode.com/en/docs/api/curl#account-tagging)
 ```php
 // POST /account/tag/NAME
@@ -172,6 +184,7 @@ $childAccount = $printNode->getChildAccount($creatorRef, PrintNode::$CHILD_AUTH_
 // DELETE /account/tag/NAME
 
 ```
+
 ### [API Keys](https://www.printnode.com/en/docs/api/curl#account-apikeys)
 ```php
 // POST /account/apikey/DESCRIPTION
@@ -181,6 +194,7 @@ $childAccount = $printNode->getChildAccount($creatorRef, PrintNode::$CHILD_AUTH_
 // DELETE /account/apikey/DESCRIPTION
 
 ```
+
 ### [Client Downloads](https://www.printnode.com/en/docs/api/curl#account-download-management)
 ```php
 $clientKey = $childAccount->getClientKey($uuid, $edition, $version); // returns string 
@@ -192,9 +206,9 @@ $clientKey = $childAccount->getClientKey($uuid, $edition, $version); // returns 
 // GET /ping
 PrintNode::ping(); // returns true/false
 ```
+
 ### [Noop](https://www.printnode.com/en/docs/api/curl#misc-noop)
 ```php
 // GET /noop
 $printNode->noop(); // returns true/false
 ```
-

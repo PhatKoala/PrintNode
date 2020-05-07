@@ -1,13 +1,13 @@
 <?php
 
-namespace Bigstylee\PrintNode\Response;
+namespace PhatKoala\PrintNode\Response;
 
 use DateTime;
 use DateTimeInterface;
 
 /**
  * Class PrintJobResponse
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 class PrintJobResponse extends AbstractResponse
 {

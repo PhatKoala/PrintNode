@@ -1,10 +1,10 @@
 <?php
 
-namespace Bigstylee\PrintNode\Response;
+namespace PhatKoala\PrintNode\Response;
 
 /**
  * Class PrintersResponse
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 class PrintersResponse extends AbstractResponse implements \ArrayAccess, \Iterator
 {

@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Bigstylee\PrintNode\Tests\Request;
+namespace PhatKoala\PrintNode\Tests\Request;
 
-use Bigstylee\PrintNode\Request\PrintJob\PrintJobFile;
-use Bigstylee\PrintNode\Request\PrintJob\PrintJobUrl;
-use Bigstylee\PrintNode\Request\RequestHeaders;
+use PhatKoala\PrintNode\Request\PrintJob\PrintJobFile;
+use PhatKoala\PrintNode\Request\PrintJob\PrintJobUrl;
+use PhatKoala\PrintNode\Request\RequestHeaders;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class PrintJobUrlTest
- * @author Stewart Walter <code@bigstylee.co.uk>
+ * @author Stewart Walter <code@phatkoala.uk>
  */
 final class PrintJobUrlTest extends TestCase
 {

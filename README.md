@@ -69,6 +69,9 @@ $printNode->deleteComputerPrinters(int $computer, int|array $printers); // retur
 $printJobFile = $printNode->createPrintJobFile(int $printer, string $title, string $source); // returns PrintJobFile
 $printJobFile->send('path/to/file.pdf'); // returns Print Job ID
 
+$printJobFile = $printNode->createPrintJobPdfSource(int $printer, string $title, string $source); // returns PrintJobFile
+$printJobFile->send($pdfSource); // returns Print Job ID
+
 $printJobUrl = $printNode->createPrintJobUrl(int $printer, string $title, string $source); // returns PrintJobUrl
 $printJobUrl->send('https://www.domain.com/path/to/file.pdf'); // returns Print Job ID
 ```

@@ -306,6 +306,11 @@ class PrintNode
         return new PrintJobFile($this->auth, $this->headers, $printer, $title, $source);
     }
 
+    public function createPrintJobPdfSource(int $printer, string $title, string $source): PrintJobPdfSource
+    {
+        return new PrintJobPdfSource($this->auth, $this->headers, $printer, $title, $source);
+    }
+
     /**
      * @param int $printer
      * @param string $title

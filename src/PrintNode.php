@@ -22,6 +22,7 @@ use PhatKoala\PrintNode\Request\PrintersDeleteRequest;
 use PhatKoala\PrintNode\Request\PrintersRequest;
 use PhatKoala\PrintNode\Request\PrintJob\PrintJobFile;
 use PhatKoala\PrintNode\Request\PrintJob\PrintJobUrl;
+use PhatKoala\PrintNode\Request\PrintJob\PrintJobPdfSource;
 use PhatKoala\PrintNode\Request\RequestHeaders;
 use PhatKoala\PrintNode\Request\RequestHeadersInterface;
 use PhatKoala\PrintNode\Request\WhoAmIRequest;

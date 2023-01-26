@@ -1,4 +1,15 @@
 # PrintNode
+
+## Changelog
+### Version 2.0
+- Removed composer.lock file (Credit [toooni](https://github.com/toooni))
+- Change symfony/http-client version constraint (Credit [toooni](https://github.com/toooni))
+- Implemented printing from pdf source (Credit [toooni](https://github.com/toooni))
+
+### Version 1..0
+- Initial release
+
+## About
 PHP 7.1 API library for PrintNode - Remote Printing for Web Apps https://www.printnode.com/
 
 ```php

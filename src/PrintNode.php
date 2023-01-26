@@ -22,6 +22,7 @@ use PhatKoala\PrintNode\Request\PrintersDeleteRequest;
 use PhatKoala\PrintNode\Request\PrintersRequest;
 use PhatKoala\PrintNode\Request\PrintJob\PrintJobFile;
 use PhatKoala\PrintNode\Request\PrintJob\PrintJobUrl;
+use PhatKoala\PrintNode\Request\PrintJob\PrintJobPdfSource;
 use PhatKoala\PrintNode\Request\RequestHeaders;
 use PhatKoala\PrintNode\Request\RequestHeadersInterface;
 use PhatKoala\PrintNode\Request\WhoAmIRequest;
@@ -304,6 +305,11 @@ class PrintNode
     public function createPrintJobFile(int $printer, string $title, string $source): PrintJobFile
     {
         return new PrintJobFile($this->auth, $this->headers, $printer, $title, $source);
+    }
+
+    public function createPrintJobPdfSource(int $printer, string $title, string $source): PrintJobPdfSource
+    {
+        return new PrintJobPdfSource($this->auth, $this->headers, $printer, $title, $source);
     }
 
     /**

@@ -76,7 +76,7 @@ class PrintNode
      * @param int|null $child
      * @param string $childAuthBy
      */
-    public function __construct(string $auth, RequestHeadersInterface $headers = null, int $child = null, $childAuthBy = 'id')
+    public function __construct(string $auth, ?RequestHeadersInterface $headers = null, ?int $child = null, $childAuthBy = 'id')
     {
         $this->auth = $auth;
         $this->headers = (is_null($headers)) ? new RequestHeaders() : $headers;

@@ -79,7 +79,7 @@ class ChildAccountResponse extends AbstractResponse
      * @param iterable $response
      * @param iterable|null $headers
      */
-    public function __construct(iterable $response, iterable $headers = null)
+    public function __construct(iterable $response, ?iterable $headers = null)
     {
         parent::__construct($response, $headers);
 

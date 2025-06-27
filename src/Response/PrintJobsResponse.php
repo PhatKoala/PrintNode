@@ -18,7 +18,7 @@ class PrintJobsResponse extends AbstractResponse implements \ArrayAccess, \Itera
      * @param iterable $response
      * @param iterable|null $headers
      */
-    public function __construct(iterable $response, iterable $headers = null)
+    public function __construct(iterable $response, ?iterable $headers = null)
     {
         if (is_iterable($headers)) {
             $this->headers = new ResponseHeaders($headers);

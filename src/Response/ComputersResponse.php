@@ -18,7 +18,7 @@ class ComputersResponse extends AbstractResponse implements \ArrayAccess, \Itera
      * @param iterable $headers
      * @param iterable $response
      */
-    public function __construct(iterable $response, iterable $headers = null)
+    public function __construct(iterable $response, ?iterable $headers = null)
     {
         if (is_iterable($headers)) {
             $this->headers = new ResponseHeaders($headers);

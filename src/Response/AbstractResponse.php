@@ -18,7 +18,7 @@ abstract class AbstractResponse
      * @param array $response
      * @param array|null $headers
      */
-    public function __construct(iterable $response, iterable $headers = null)
+    public function __construct(iterable $response, ?iterable $headers = null)
     {
         if (is_iterable($headers)) {
             $this->headers = new ResponseHeaders($headers);

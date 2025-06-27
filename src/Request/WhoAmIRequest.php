@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PhatKoala\PrintNode\Request;
@@ -29,7 +30,8 @@ class WhoAmIRequest extends AbstractRequest
         $response = $this->request->request('GET', sprintf($this->url, 'whoami'));
 
         return new WhoAmIResponse(
-            $response->toArray(), $response->getHeaders()
+            $response->toArray(),
+            $response->getHeaders()
         );
     }
 }

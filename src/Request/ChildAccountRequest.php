@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PhatKoala\PrintNode\Request;
@@ -115,7 +116,8 @@ class ChildAccountRequest extends AbstractRequest
         ]);
 
         return new ChildAccountResponse(
-            $response->toArray(), $response->getHeaders()
+            $response->toArray(),
+            $response->getHeaders()
         );
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PhatKoala\PrintNode\Request;
@@ -31,11 +32,9 @@ class PrintersDeleteRequest extends AbstractRequest
 
         if (is_null($printers)) {
             $response = $this->request->request('DELETE', sprintf($this->url, 'printers'));
-        }
-        else if (is_int($printers) || (is_string($printers) && ctype_digit($printers))) {
+        } elseif (is_int($printers) || (is_string($printers) && ctype_digit($printers))) {
             $response = $this->request->request('DELETE', sprintf($this->url, sprintf('printers/%d', $printers)));
-        }
-        else if (is_array($printers)) {
+        } elseif (is_array($printers)) {
             $printers = implode(',', array_filter(array_map('intval', $printers)));
             if (!empty($printers)) {
                 $response = $this->request->request('DELETE', sprintf($this->url, sprintf('printers/%s', $printers)));
@@ -44,7 +43,8 @@ class PrintersDeleteRequest extends AbstractRequest
 
         if (!is_null($response)) {
             return new DeleteConfirmationResponse(
-                $response->toArray(), $response->getHeaders()
+                $response->toArray(),
+                $response->getHeaders()
             );
         }
 

@@ -8,5 +8,4 @@ namespace PhatKoala\PrintNode\Request\PrintJob;
  */
 interface PrintJobInterface
 {
-
 }

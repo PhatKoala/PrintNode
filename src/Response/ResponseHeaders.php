@@ -90,7 +90,7 @@ class ResponseHeaders
     public function __construct(iterable $headers)
     {
         foreach ($headers as $name => $value) {
-            $method = 'set'.str_replace(' ', '', ucwords(str_replace('-', ' ', $name)));;
+            $method = 'set'.str_replace(' ', '', ucwords(str_replace('-', ' ', $name)));
             if (method_exists($this, $method)) {
                 $this->$method($value[0]);
             }

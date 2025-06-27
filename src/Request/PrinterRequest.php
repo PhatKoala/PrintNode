@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PhatKoala\PrintNode\Request;
@@ -30,7 +31,8 @@ class PrinterRequest extends AbstractRequest
         $response = $this->request->request('GET', sprintf($this->url, sprintf('printers/%d', $printer)));
 
         return new PrinterResponse(
-            $response->toArray()[0], $response->getHeaders()
+            $response->toArray()[0],
+            $response->getHeaders()
         );
     }
 }

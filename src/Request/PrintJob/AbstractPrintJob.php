@@ -149,7 +149,7 @@ abstract class AbstractPrintJob extends AbstractRequest
 
     /**
      * AbstractPrintJobRequest constructor.
-     * 
+     *
      * @param $auth
      * @param RequestHeadersInterface $headers
      * @param int $printer
@@ -195,7 +195,7 @@ abstract class AbstractPrintJob extends AbstractRequest
             'qty' => $this->getQuantity(),
             'authentication' => (!is_null($this->getAuthentication()) ? $this->getAuthentication()->buildRequest() : null),
             'options' => $options,
-        ], function ($value){
+        ], function ($value) {
             return !is_null($value);
         });
     }

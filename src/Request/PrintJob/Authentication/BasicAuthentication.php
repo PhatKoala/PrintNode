@@ -22,7 +22,7 @@ class BasicAuthentication implements AuthenticationInterface
 
     /**
      * BasicAuthentication constructor.
-     * 
+     *
      * @param string $username
      * @param string $password
      */
